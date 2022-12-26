@@ -64,6 +64,8 @@ private Q_SLOTS:
     void testQStringUtf8_data();
     void testQStringUtf8();
 
+    void testMoveValuesTo();
+
     void testSubGroup();
     void testAddConfigSources();
     void testWriteOnSync();
@@ -80,6 +82,7 @@ private Q_SLOTS:
     void testNewlines();
     void testXdgListEntry();
     void testNotify();
+    void testKAuthorizeEnums();
 
     void testThreads();
 

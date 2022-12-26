@@ -56,7 +56,7 @@ public:
      *
      * Writes back any dirty configuration entries.
      */
-    virtual ~KDesktopFile();
+    ~KDesktopFile() override;
 
     /**
      * Checks whether this is really a desktop file.
@@ -238,15 +238,19 @@ public:
      */
     KDesktopFile *copyTo(const QString &file) const;
 
+    /**
+     * Returns the name of the .desktop file that was used to construct this KDesktopFile.
+     */
     QString fileName() const;
 
+#if KCONFIGCORE_ENABLE_DEPRECATED_SINCE(5, 89)
+    /**
+     * @deprecated Since 5.89, use locationType() instead.
+     */
+    KCONFIGCORE_DEPRECATED_VERSION(5, 89, "Use locationType() instead.")
     QStandardPaths::StandardLocation resource() const;
+#endif
 
-protected:
-    /** Virtual hook, used to add new "virtual" functions while maintaining
-        binary compatibility. Unused in this class.
-    */
-    //  virtual void virtual_hook( int id, void* data );
 private:
     Q_DISABLE_COPY(KDesktopFile)
 

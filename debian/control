@@ -2,12 +2,13 @@ Source: kconfig
 Section: libs
 Priority: optional
 Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
-Uploaders: Norbert Preining <norbert@preining.info>
+Uploaders: Aurélien COUDERC <coucouf@debian.org>,
+           Norbert Preining <norbert@preining.info>,
 Build-Depends: cmake (>= 3.16~),
                dbus-x11 <!nocheck>,
                debhelper-compat (= 13),
                doxygen (>= 1.8.13~),
-               extra-cmake-modules (>= 5.86.0~),
+               extra-cmake-modules (>= 5.90.0~),
                libqt5sql5-sqlite,
                pkg-kde-tools (>= 0.15.15ubuntu1~),
                qtbase5-dev (>= 5.15.2~),

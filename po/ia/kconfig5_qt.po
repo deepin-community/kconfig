@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2021-08-04 22:37+0200\n"
+"PO-Revision-Date: 2021-12-19 23:25+0100\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 21.04.3\n"
+"X-Generator: Lokalize 21.12.0\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Qt-Contexts: true\n"
 
@@ -24,7 +24,7 @@ msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Pro favor, tu continge tu administrator de systema"
 
-#: core/kconfigini.cpp:567
+#: core/kconfigini.cpp:562
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
@@ -456,17 +456,17 @@ msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "Crea dossier"
 
-#: kconf_update/kconf_update.cpp:954
+#: kconf_update/kconf_update.cpp:957
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "Instrumento KDE pro actualisar le files de configuration del usator"
 
-#: kconf_update/kconf_update.cpp:956
+#: kconf_update/kconf_update.cpp:959
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "Mantene le resultatos de exitos ex le scripts"
 
-#: kconf_update/kconf_update.cpp:959
+#: kconf_update/kconf_update.cpp:962
 msgctxt "main|"
 msgid ""
 "For unit tests only: use test directories to stay away from the user's real "
@@ -475,12 +475,12 @@ msgstr ""
 "Solment eper unitates de essayar: usa dossieres de essayar pro estar foras "
 "del ver files de usator"
 
-#: kconf_update/kconf_update.cpp:961
+#: kconf_update/kconf_update.cpp:964
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "Controla si le mesme file de configuration debe esser actualisate"
 
-#: kconf_update/kconf_update.cpp:964
+#: kconf_update/kconf_update.cpp:967
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "File(s) ex cuje leger instructiones de actualisation"
@@ -500,33 +500,43 @@ msgctxt "main|"
 msgid "Display software license."
 msgstr "Monstra licentia de software."
 
-#: kreadconfig/kreadconfig.cpp:45 kreadconfig/kwriteconfig.cpp:25
+#: kreadconfig/kreadconfig.cpp:46 kreadconfig/kwriteconfig.cpp:25
 msgctxt "main|"
 msgid "Use <file> instead of global config"
 msgstr "Usa <file> in vice de config global"
 
-#: kreadconfig/kreadconfig.cpp:47 kreadconfig/kwriteconfig.cpp:27
+#: kreadconfig/kreadconfig.cpp:49 kreadconfig/kwriteconfig.cpp:28
 msgctxt "main|"
-msgid "Group to look in. Use repeatedly for nested groups."
+msgid ""
+"Group to look in. Use \"<default>\" for the root group, or use repeatedly "
+"for nested groups."
 msgstr ""
-"Gruppo de guardar internemente. Usa repetitemente per gruppos annidate."
+"Gruppo de guardar internemente. Usa \"<default>\" per le gruppo de radice, o "
+"usa repetitemente per gruppos annidate."
 
-#: kreadconfig/kreadconfig.cpp:50 kreadconfig/kwriteconfig.cpp:30
+#: kreadconfig/kreadconfig.cpp:52 kreadconfig/kwriteconfig.cpp:31
 msgctxt "main|"
 msgid "Key to look for"
 msgstr "Clave per cercar"
 
-#: kreadconfig/kreadconfig.cpp:51
+#: kreadconfig/kreadconfig.cpp:53
 msgctxt "main|"
 msgid "Default value"
 msgstr "Valor predefinite"
 
-#: kreadconfig/kreadconfig.cpp:52
+#: kreadconfig/kreadconfig.cpp:54
 msgctxt "main|"
 msgid "Type of variable"
 msgstr "Typo de variabile"
 
-#: kreadconfig/kwriteconfig.cpp:33
+#: kreadconfig/kreadconfig.cpp:84 kreadconfig/kwriteconfig.cpp:69
+msgctxt "main|"
+msgid "Group name cannot be empty, use \"<default>\" for the root group"
+msgstr ""
+"Nomine de gruppo non pote esser vacue, tu usa \"<default>\" per le gruppo de "
+"radice"
+
+#: kreadconfig/kwriteconfig.cpp:34
 msgctxt "main|"
 msgid ""
 "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
@@ -535,12 +545,12 @@ msgstr ""
 "Typo de variabile. Usa \"bool\" per un boolean, alteremente il es tractate "
 "como un catena"
 
-#: kreadconfig/kwriteconfig.cpp:35
+#: kreadconfig/kwriteconfig.cpp:36
 msgctxt "main|"
 msgid "Delete the designated key if enabled"
 msgstr "Dele le clave designate si habilitate"
 
-#: kreadconfig/kwriteconfig.cpp:36
+#: kreadconfig/kwriteconfig.cpp:37
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr "Le valor de scriber. Obligatori usar in un shell \" per vacue"

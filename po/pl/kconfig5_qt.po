@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2021-01-17 08:19+0100\n"
+"PO-Revision-Date: 2021-12-30 13:14+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 20.12.1\n"
+"X-Generator: Lokalize 22.03.70\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 "X-Qt-Contexts: true\n"
@@ -25,7 +25,7 @@ msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Proszę skontaktować się z administratorem systemu."
 
-#: core/kconfigini.cpp:567
+#: core/kconfigini.cpp:562
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
@@ -300,7 +300,7 @@ msgstr "Przywróć"
 #: gui/kstandardshortcut.cpp:292
 msgctxt "KStandardShortcut|@action"
 msgid "Print Preview"
-msgstr "Podgląd wydruku"
+msgstr "Podejrzyj wydruk"
 
 #: gui/kstandardshortcut.cpp:293
 msgctxt "KStandardShortcut|@action"
@@ -457,17 +457,17 @@ msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "Utwórz katalog"
 
-#: kconf_update/kconf_update.cpp:954
+#: kconf_update/kconf_update.cpp:957
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "Narzędzie KDE do uaktualniania plików ustawień użytkownika"
 
-#: kconf_update/kconf_update.cpp:956
+#: kconf_update/kconf_update.cpp:959
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "Zachowaj wynik wykonania skryptów"
 
-#: kconf_update/kconf_update.cpp:959
+#: kconf_update/kconf_update.cpp:962
 msgctxt "main|"
 msgid ""
 "For unit tests only: use test directories to stay away from the user's real "
@@ -476,12 +476,12 @@ msgstr ""
 "Tylko dla testów jednostkowych: użyj katalogów testowych, aby trzymać się z "
 "dala od prawdziwych plików użytkownika"
 
-#: kconf_update/kconf_update.cpp:961
+#: kconf_update/kconf_update.cpp:964
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "Sprawdź, czy nie należy uaktualnić samego pliku ustawień."
 
-#: kconf_update/kconf_update.cpp:964
+#: kconf_update/kconf_update.cpp:967
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Plik(i), z którego oczytać instrukcję uaktualnienia"
@@ -501,32 +501,41 @@ msgctxt "main|"
 msgid "Display software license."
 msgstr "Wyświetl licencję oprogramowania."
 
-#: kreadconfig/kreadconfig.cpp:45 kreadconfig/kwriteconfig.cpp:25
+#: kreadconfig/kreadconfig.cpp:46 kreadconfig/kwriteconfig.cpp:25
 msgctxt "main|"
 msgid "Use <file> instead of global config"
 msgstr "Użyj <file> zamiast ustawień globalnych"
 
-#: kreadconfig/kreadconfig.cpp:47 kreadconfig/kwriteconfig.cpp:27
+#: kreadconfig/kreadconfig.cpp:49 kreadconfig/kwriteconfig.cpp:28
 msgctxt "main|"
-msgid "Group to look in. Use repeatedly for nested groups."
-msgstr "Przeszukiwana grupa. Użyj wielokrotnie dla zagnieżdżonych grup."
+msgid ""
+"Group to look in. Use \"<default>\" for the root group, or use repeatedly "
+"for nested groups."
+msgstr ""
+"Przeszukiwana grupa. Użyj \"<default>\" dla grupy głównej lub użyj tego "
+"wielokrotnie dla zagnieżdżonych grup."
 
-#: kreadconfig/kreadconfig.cpp:50 kreadconfig/kwriteconfig.cpp:30
+#: kreadconfig/kreadconfig.cpp:52 kreadconfig/kwriteconfig.cpp:31
 msgctxt "main|"
 msgid "Key to look for"
 msgstr "Szukany klucz"
 
-#: kreadconfig/kreadconfig.cpp:51
+#: kreadconfig/kreadconfig.cpp:53
 msgctxt "main|"
 msgid "Default value"
 msgstr "Domyślna wartość"
 
-#: kreadconfig/kreadconfig.cpp:52
+#: kreadconfig/kreadconfig.cpp:54
 msgctxt "main|"
 msgid "Type of variable"
 msgstr "Rodzaj zmiennej"
 
-#: kreadconfig/kwriteconfig.cpp:33
+#: kreadconfig/kreadconfig.cpp:84 kreadconfig/kwriteconfig.cpp:69
+msgctxt "main|"
+msgid "Group name cannot be empty, use \"<default>\" for the root group"
+msgstr "Nazwa grupy nie może być pusta, użyj \"<default>\" dla głównej grupy"
+
+#: kreadconfig/kwriteconfig.cpp:34
 msgctxt "main|"
 msgid ""
 "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
@@ -535,12 +544,12 @@ msgstr ""
 "Rodzaj zmiennej. Dla wartości logicznej jest to \"bool\", w przeciwnym razie "
 "zmienna będzie traktowana jak ciąg znaków"
 
-#: kreadconfig/kwriteconfig.cpp:35
+#: kreadconfig/kwriteconfig.cpp:36
 msgctxt "main|"
 msgid "Delete the designated key if enabled"
 msgstr "Usuń przeznaczony klucz, jeśli włączone"
 
-#: kreadconfig/kwriteconfig.cpp:36
+#: kreadconfig/kwriteconfig.cpp:37
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr ""

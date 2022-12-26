@@ -3,20 +3,20 @@
 # Copyright (C).
 #
 # Mattias Newzella <newzella@linux.nu>, 2003.
-# Stefan Asserhäll <stefan.asserhall@bredband.net>, 2007, 2008, 2014, 2015, 2016, 2017, 2018, 2019, 2020.
+# Stefan Asserhäll <stefan.asserhall@bredband.net>, 2007, 2008, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2020-08-30 07:59+0200\n"
+"PO-Revision-Date: 2021-12-07 17:03+0100\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 19.04.3\n"
+"X-Generator: Lokalize 20.08.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Qt-Contexts: true\n"
 
@@ -25,7 +25,7 @@ msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr " Kontakta systemadministratören."
 
-#: core/kconfigini.cpp:567
+#: core/kconfigini.cpp:562
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
@@ -457,17 +457,17 @@ msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "Skapa katalog"
 
-#: kconf_update/kconf_update.cpp:954
+#: kconf_update/kconf_update.cpp:957
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "KDE-verktyg för uppdatering av användarinställningsfiler"
 
-#: kconf_update/kconf_update.cpp:956
+#: kconf_update/kconf_update.cpp:959
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "Behåll utmatade resultat från skript"
 
-#: kconf_update/kconf_update.cpp:959
+#: kconf_update/kconf_update.cpp:962
 msgctxt "main|"
 msgid ""
 "For unit tests only: use test directories to stay away from the user's real "
@@ -476,12 +476,12 @@ msgstr ""
 "Bara för enhetstester: Använd testkataloger för att undvika användarens "
 "riktiga filer"
 
-#: kconf_update/kconf_update.cpp:961
+#: kconf_update/kconf_update.cpp:964
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "Kontrollera om inställningsfilen själv kräver uppdatering"
 
-#: kconf_update/kconf_update.cpp:964
+#: kconf_update/kconf_update.cpp:967
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Fil(er) att läsa uppdaterade instruktioner från"
@@ -501,32 +501,41 @@ msgctxt "main|"
 msgid "Display software license."
 msgstr "Visa programvarulicens."
 
-#: kreadconfig/kreadconfig.cpp:45 kreadconfig/kwriteconfig.cpp:25
+#: kreadconfig/kreadconfig.cpp:46 kreadconfig/kwriteconfig.cpp:25
 msgctxt "main|"
 msgid "Use <file> instead of global config"
 msgstr "Använd <fil> istället för globala inställningar"
 
-#: kreadconfig/kreadconfig.cpp:47 kreadconfig/kwriteconfig.cpp:27
+#: kreadconfig/kreadconfig.cpp:49 kreadconfig/kwriteconfig.cpp:28
 msgctxt "main|"
-msgid "Group to look in. Use repeatedly for nested groups."
-msgstr "Grupp att titta i. Använd upprepade gånger för nästlade grupper."
+msgid ""
+"Group to look in. Use \"<default>\" for the root group, or use repeatedly "
+"for nested groups."
+msgstr ""
+"Grupp att titta i. Använd \"<förval>\" för rotgruppen, eller använd "
+"upprepade gånger för nästlade grupper."
 
-#: kreadconfig/kreadconfig.cpp:50 kreadconfig/kwriteconfig.cpp:30
+#: kreadconfig/kreadconfig.cpp:52 kreadconfig/kwriteconfig.cpp:31
 msgctxt "main|"
 msgid "Key to look for"
 msgstr "Nyckel att söka efter"
 
-#: kreadconfig/kreadconfig.cpp:51
+#: kreadconfig/kreadconfig.cpp:53
 msgctxt "main|"
 msgid "Default value"
 msgstr "Förvalt värde"
 
-#: kreadconfig/kreadconfig.cpp:52
+#: kreadconfig/kreadconfig.cpp:54
 msgctxt "main|"
 msgid "Type of variable"
 msgstr "Typ av variabel"
 
-#: kreadconfig/kwriteconfig.cpp:33
+#: kreadconfig/kreadconfig.cpp:84 kreadconfig/kwriteconfig.cpp:69
+msgctxt "main|"
+msgid "Group name cannot be empty, use \"<default>\" for the root group"
+msgstr "Gruppnamn kan inte vara tomt, använd \"<förval>\" för rotgruppen"
+
+#: kreadconfig/kwriteconfig.cpp:34
 msgctxt "main|"
 msgid ""
 "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
@@ -535,12 +544,12 @@ msgstr ""
 "Typ av variabel. Använd \"bool\" för ett Booleskt värde, annars behandlas "
 "det som en sträng."
 
-#: kreadconfig/kwriteconfig.cpp:35
+#: kreadconfig/kwriteconfig.cpp:36
 msgctxt "main|"
 msgid "Delete the designated key if enabled"
 msgstr "Ta bort den designerade nyckeln om aktiverad"
 
-#: kreadconfig/kwriteconfig.cpp:36
+#: kreadconfig/kwriteconfig.cpp:37
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr "Värdet att skriva. Krävs, använd '' för tomt värde i ett skal."

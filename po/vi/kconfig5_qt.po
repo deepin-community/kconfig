@@ -3,20 +3,20 @@
 #
 # Phan Vĩnh Thịnh <teppi82@gmail.com>, 2006.
 # Lê Hoàng Phương <herophuong93@gmail.com>, 2012.
-# Phu Hung Nguyen <phuhnguyen@disroot.org>, 2020.
+# Phu Hung Nguyen <phu.nguyen@kdemail.net>, 2020, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: kwriteconfig\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
-"PO-Revision-Date: 2020-11-28 16:51+0100\n"
-"Last-Translator: Phu Hung Nguyen <phuhnguyen@disroot.org>\n"
+"PO-Revision-Date: 2021-12-10 10:28+0100\n"
+"Last-Translator: Phu Hung Nguyen <phu.nguyen@kdemail.net>\n"
 "Language-Team: Vietnamese <kde-l10n-vi@kde.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 20.08.1\n"
+"X-Generator: Lokalize 20.12.2\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Qt-Contexts: true\n"
 
@@ -25,7 +25,7 @@ msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Vui lòng liên hệ với quản trị viên hệ thống của bạn."
 
-#: core/kconfigini.cpp:567
+#: core/kconfigini.cpp:562
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
@@ -457,17 +457,17 @@ msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "Tạo thư mục"
 
-#: kconf_update/kconf_update.cpp:954
+#: kconf_update/kconf_update.cpp:957
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "Công cụ KDE để cập nhật các tệp cấu hình của người dùng"
 
-#: kconf_update/kconf_update.cpp:956
+#: kconf_update/kconf_update.cpp:959
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "Giữ lại các kết quả đầu ra từ các kịch bản"
 
-#: kconf_update/kconf_update.cpp:959
+#: kconf_update/kconf_update.cpp:962
 msgctxt "main|"
 msgid ""
 "For unit tests only: use test directories to stay away from the user's real "
@@ -476,12 +476,12 @@ msgstr ""
 "Chỉ dành cho kiểm thử đơn vị: dùng các thư mục kiểm thử để không động đến "
 "các tệp thực tế của người dùng"
 
-#: kconf_update/kconf_update.cpp:961
+#: kconf_update/kconf_update.cpp:964
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "Kiểm tra liệu chính tệp cấu hình có cần cập nhật không"
 
-#: kconf_update/kconf_update.cpp:964
+#: kconf_update/kconf_update.cpp:967
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "(Các) tệp để từ đó đọc ra hướng dẫn cập nhật"
@@ -501,32 +501,41 @@ msgctxt "main|"
 msgid "Display software license."
 msgstr "Hiển thị giấy phép phần mềm."
 
-#: kreadconfig/kreadconfig.cpp:45 kreadconfig/kwriteconfig.cpp:25
+#: kreadconfig/kreadconfig.cpp:46 kreadconfig/kwriteconfig.cpp:25
 msgctxt "main|"
 msgid "Use <file> instead of global config"
 msgstr "Dùng <file> thay cho cấu hình toàn cục"
 
-#: kreadconfig/kreadconfig.cpp:47 kreadconfig/kwriteconfig.cpp:27
+#: kreadconfig/kreadconfig.cpp:49 kreadconfig/kwriteconfig.cpp:28
 msgctxt "main|"
-msgid "Group to look in. Use repeatedly for nested groups."
-msgstr "Tìm trong nhóm nào. Dùng lặp lại để được các nhóm lồng nhau."
+msgid ""
+"Group to look in. Use \"<default>\" for the root group, or use repeatedly "
+"for nested groups."
+msgstr ""
+"Tìm trong nhóm nào. Dùng \"<default>\" cho nhóm gốc, hoặc dùng lặp lại để "
+"được các nhóm lồng nhau."
 
-#: kreadconfig/kreadconfig.cpp:50 kreadconfig/kwriteconfig.cpp:30
+#: kreadconfig/kreadconfig.cpp:52 kreadconfig/kwriteconfig.cpp:31
 msgctxt "main|"
 msgid "Key to look for"
 msgstr "Khoá cần tìm"
 
-#: kreadconfig/kreadconfig.cpp:51
+#: kreadconfig/kreadconfig.cpp:53
 msgctxt "main|"
 msgid "Default value"
 msgstr "Giá trị mặc định"
 
-#: kreadconfig/kreadconfig.cpp:52
+#: kreadconfig/kreadconfig.cpp:54
 msgctxt "main|"
 msgid "Type of variable"
 msgstr "Kiểu biến"
 
-#: kreadconfig/kwriteconfig.cpp:33
+#: kreadconfig/kreadconfig.cpp:84 kreadconfig/kwriteconfig.cpp:69
+msgctxt "main|"
+msgid "Group name cannot be empty, use \"<default>\" for the root group"
+msgstr "Tên nhóm không được trống, dùng \"<default>\" cho nhóm gốc"
+
+#: kreadconfig/kwriteconfig.cpp:34
 msgctxt "main|"
 msgid ""
 "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
@@ -535,12 +544,12 @@ msgstr ""
 "Kiểu biến. Dùng \"bool\" cho một biến luận lí, ngược lại nó sẽ được coi là "
 "một chuỗi."
 
-#: kreadconfig/kwriteconfig.cpp:35
+#: kreadconfig/kwriteconfig.cpp:36
 msgctxt "main|"
 msgid "Delete the designated key if enabled"
 msgstr "Nếu bật, xoá khoá được chỉ định"
 
-#: kreadconfig/kwriteconfig.cpp:36
+#: kreadconfig/kwriteconfig.cpp:37
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr "Giá trị để ghi. Bắt buộc, trên một hệ vỏ dùng '' cho giá trị rỗng"

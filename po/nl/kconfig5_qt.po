@@ -1,24 +1,24 @@
-# Freek de Kruijf <freekdekruijf@kde.nl>, 2014, 2015, 2016, 2017, 2018, 2019, 2020.
+# Freek de Kruijf <freekdekruijf@kde.nl>, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2020-08-30 09:27+0200\n"
+"PO-Revision-Date: 2021-12-07 10:54+0100\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
-"Language-Team: Dutch <kde-i18n-nl@kde.org>\n"
+"Language-Team: \n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 20.08.0\n"
+"X-Generator: Lokalize 21.08.3\n"
 
 #: core/kconfig.cpp:950
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Neem contact op met uw systeembeheerder."
 
-#: core/kconfigini.cpp:567
+#: core/kconfigini.cpp:562
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
@@ -450,18 +450,18 @@ msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "Map aanmaken"
 
-#: kconf_update/kconf_update.cpp:954
+#: kconf_update/kconf_update.cpp:957
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr ""
 "KDE-programma voor het bijwerken van de gebruikers' configuratiebestanden"
 
-#: kconf_update/kconf_update.cpp:956
+#: kconf_update/kconf_update.cpp:959
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "Uitvoerresultaten van scripts behouden"
 
-#: kconf_update/kconf_update.cpp:959
+#: kconf_update/kconf_update.cpp:962
 msgctxt "main|"
 msgid ""
 "For unit tests only: use test directories to stay away from the user's real "
@@ -470,12 +470,12 @@ msgstr ""
 "Alleen voor testen van units: gebruik testmappen om weg te blijven van de "
 "echte bestanden van gebruikers"
 
-#: kconf_update/kconf_update.cpp:961
+#: kconf_update/kconf_update.cpp:964
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "Controleren of het configuratiebestand zelf bijgewerkt dient te worden"
 
-#: kconf_update/kconf_update.cpp:964
+#: kconf_update/kconf_update.cpp:967
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Bestand(en) met instructies voor bijwerken"
@@ -495,32 +495,42 @@ msgctxt "main|"
 msgid "Display software license."
 msgstr "Softwarelicentie tonen."
 
-#: kreadconfig/kreadconfig.cpp:45 kreadconfig/kwriteconfig.cpp:25
+#: kreadconfig/kreadconfig.cpp:46 kreadconfig/kwriteconfig.cpp:25
 msgctxt "main|"
 msgid "Use <file> instead of global config"
 msgstr "<file> gebruiken in plaats van globale configuratie"
 
-#: kreadconfig/kreadconfig.cpp:47 kreadconfig/kwriteconfig.cpp:27
+#: kreadconfig/kreadconfig.cpp:49 kreadconfig/kwriteconfig.cpp:28
 msgctxt "main|"
-msgid "Group to look in. Use repeatedly for nested groups."
-msgstr "Groep om in te zoeken. Gebruik herhaaldelijk voor geneste groepen."
+msgid ""
+"Group to look in. Use \"<default>\" for the root group, or use repeatedly "
+"for nested groups."
+msgstr ""
+"Groep om in te zoeken. Gebruik \"<standaard>\" voor de groep root of "
+"herhaaldelijk voor geneste groepen."
 
-#: kreadconfig/kreadconfig.cpp:50 kreadconfig/kwriteconfig.cpp:30
+#: kreadconfig/kreadconfig.cpp:52 kreadconfig/kwriteconfig.cpp:31
 msgctxt "main|"
 msgid "Key to look for"
 msgstr "Term om naar te zoeken"
 
-#: kreadconfig/kreadconfig.cpp:51
+#: kreadconfig/kreadconfig.cpp:53
 msgctxt "main|"
 msgid "Default value"
 msgstr "Standaardwaarde"
 
-#: kreadconfig/kreadconfig.cpp:52
+#: kreadconfig/kreadconfig.cpp:54
 msgctxt "main|"
 msgid "Type of variable"
 msgstr "Variabeletype"
 
-#: kreadconfig/kwriteconfig.cpp:33
+#: kreadconfig/kreadconfig.cpp:84 kreadconfig/kwriteconfig.cpp:69
+msgctxt "main|"
+msgid "Group name cannot be empty, use \"<default>\" for the root group"
+msgstr ""
+"Groepsnaam kan niet leeg zijn, gebruik \"<standaard>\" voor de groep root"
+
+#: kreadconfig/kwriteconfig.cpp:34
 msgctxt "main|"
 msgid ""
 "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
@@ -529,12 +539,12 @@ msgstr ""
 "Variabeletype. Gebruik \"bool\" voor een boleaanse waarde, anders wordt dit "
 "behandeld als een tekenreeks."
 
-#: kreadconfig/kwriteconfig.cpp:35
+#: kreadconfig/kwriteconfig.cpp:36
 msgctxt "main|"
 msgid "Delete the designated key if enabled"
 msgstr "De aangeduide sleutel verwijderen indien ingeschakeld"
 
-#: kreadconfig/kwriteconfig.cpp:36
+#: kreadconfig/kwriteconfig.cpp:37
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr "De waarde om te schrijven. Gebruik op een shell altijd '' voor leeg."

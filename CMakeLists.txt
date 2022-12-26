@@ -1,32 +1,14 @@
 cmake_minimum_required(VERSION 3.16)
 
-set(KF_VERSION "5.86.0") # handled by release scripts
+set(KF_VERSION "5.90.0") # handled by release scripts
 project(KConfig VERSION ${KF_VERSION})
 
 include(FeatureSummary)
-find_package(ECM 5.86.0  NO_MODULE)
+find_package(ECM 5.90.0  NO_MODULE)
 set_package_properties(ECM PROPERTIES TYPE REQUIRED DESCRIPTION "Extra CMake Modules." URL "https://commits.kde.org/extra-cmake-modules")
 feature_summary(WHAT REQUIRED_PACKAGES_NOT_FOUND FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
-
-set(REQUIRED_QT_VERSION 5.15.2)
-
-find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED Xml)
-option(KCONFIG_USE_GUI "Build components using Qt5Gui" ON)
-if(KCONFIG_USE_GUI)
-    find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED Gui)
-endif()
-
-if (NOT ANDROID)
-    option(KCONFIG_USE_DBUS "Build components using Qt5DBus" ON)
-    if(KCONFIG_USE_DBUS)
-        find_package(Qt5 ${REQUIRED_QT_VERSION} CONFIG REQUIRED DBus)
-    endif()
-else()
-    set(KCONFIG_USE_DBUS Off)
-endif()
-
 
 include(KDEInstallDirs)
 include(KDEFrameworkCompilerSettings NO_POLICY_SCOPE)
@@ -40,6 +22,24 @@ include(ECMMarkNonGuiExecutable)
 include(ECMPoQmTools)
 include(ECMAddQch)
 include(ECMQtDeclareLoggingCategory)
+
+set(REQUIRED_QT_VERSION 5.15.2)
+
+find_package(Qt${QT_MAJOR_VERSION} ${REQUIRED_QT_VERSION} CONFIG REQUIRED Xml)
+option(KCONFIG_USE_GUI "Build components using Qt${QT_MAJOR_VERSION}Gui" ON)
+if(KCONFIG_USE_GUI)
+    find_package(Qt${QT_MAJOR_VERSION} ${REQUIRED_QT_VERSION} CONFIG REQUIRED Gui)
+endif()
+find_package(Qt${QT_MAJOR_VERSION} ${REQUIRED_QT_VERSION} OPTIONAL_COMPONENTS Qml)
+
+if (NOT ANDROID)
+    option(KCONFIG_USE_DBUS "Build components using Qt${QT_MAJOR_VERSION}DBus" ON)
+    if(KCONFIG_USE_DBUS)
+        find_package(Qt${QT_MAJOR_VERSION} ${REQUIRED_QT_VERSION} CONFIG REQUIRED DBus)
+    endif()
+else()
+    set(KCONFIG_USE_DBUS Off)
+endif()
 
 set(EXCLUDE_DEPRECATED_BEFORE_AND_AT 0 CACHE STRING "Control the range of deprecated API excluded from the build [default=0].")
 
@@ -97,7 +97,7 @@ install(EXPORT KF5ConfigCompilerTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
         FILE KF5ConfigCompilerTargets.cmake NAMESPACE KF5:: COMPONENT Devel)
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/kconfig_version.h
-        DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5} COMPONENT Devel )
+        DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF} COMPONENT Devel )
 
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)

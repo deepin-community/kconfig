@@ -4,16 +4,16 @@
 # version 3 or later versions approved by the membership of KDE e.V.
 #
 # Ivan Lloro Boada <antispam@wanadoo.es>, 2004.
-# Josep Ma. Ferrer <txemaq@gmail.com>, 2007, 2008, 2009, 2014, 2015, 2016, 2017, 2018.
+# Josep M. Ferrer <txemaq@gmail.com>, 2007, 2008, 2009, 2014, 2015, 2016, 2017, 2018.
 # Antoni Bella Pérez <antonibella5@yahoo.com>, 2014, 2015, 2016, 2017.
-# Empar <montoro_mde@gva.es>, 2019.
+# Empar Montoro Martín <montoro_mde@gva.es>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: kconfig\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2014-04-11 02:17+0000\n"
 "PO-Revision-Date: 2019-06-17 12:53+0200\n"
-"Last-Translator: Empar <montoro_mde@gva.es>\n"
+"Last-Translator: Empar Montoro Martín <montoro_mde@gva.es>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Per favor, contacteu amb l'administrador del sistema."
 
-#: core/kconfigini.cpp:567
+#: core/kconfigini.cpp:562
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
@@ -462,17 +462,17 @@ msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr ""
 
-#: kconf_update/kconf_update.cpp:954
+#: kconf_update/kconf_update.cpp:957
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "Eina del KDE per a actualitzar els fitxers de configuració d'usuari"
 
-#: kconf_update/kconf_update.cpp:956
+#: kconf_update/kconf_update.cpp:959
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "Conserva els resultats de l'eixida dels scripts"
 
-#: kconf_update/kconf_update.cpp:959
+#: kconf_update/kconf_update.cpp:962
 msgctxt "main|"
 msgid ""
 "For unit tests only: use test directories to stay away from the user's real "
@@ -481,12 +481,12 @@ msgstr ""
 "Només per a les proves unitàries: utilitza directoris per a proves que es "
 "mantenen allunyats dels fitxers reals de l'usuari"
 
-#: kconf_update/kconf_update.cpp:961
+#: kconf_update/kconf_update.cpp:964
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "Comproveu si cal actualitzar el fitxer de configuració"
 
-#: kconf_update/kconf_update.cpp:964
+#: kconf_update/kconf_update.cpp:967
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Fitxers per a llegir les instruccions d'actualització des de"
@@ -506,32 +506,42 @@ msgctxt "main|"
 msgid "Display software license."
 msgstr "Mostra la llicència del programari."
 
-#: kreadconfig/kreadconfig.cpp:45 kreadconfig/kwriteconfig.cpp:25
+#: kreadconfig/kreadconfig.cpp:46 kreadconfig/kwriteconfig.cpp:25
 msgctxt "main|"
 msgid "Use <file> instead of global config"
 msgstr "Utilitza <fitxer> en comptes de la configuració global"
 
-#: kreadconfig/kreadconfig.cpp:47 kreadconfig/kwriteconfig.cpp:27
+#: kreadconfig/kreadconfig.cpp:49 kreadconfig/kwriteconfig.cpp:28
+#, fuzzy
+#| msgctxt "main|"
+#| msgid "Group to look in. Use repeatedly for nested groups."
 msgctxt "main|"
-msgid "Group to look in. Use repeatedly for nested groups."
+msgid ""
+"Group to look in. Use \"<default>\" for the root group, or use repeatedly "
+"for nested groups."
 msgstr "Grup on buscar. S'utilitza repetidament per a grups imbricats."
 
-#: kreadconfig/kreadconfig.cpp:50 kreadconfig/kwriteconfig.cpp:30
+#: kreadconfig/kreadconfig.cpp:52 kreadconfig/kwriteconfig.cpp:31
 msgctxt "main|"
 msgid "Key to look for"
 msgstr "Clau que cal buscar"
 
-#: kreadconfig/kreadconfig.cpp:51
+#: kreadconfig/kreadconfig.cpp:53
 msgctxt "main|"
 msgid "Default value"
 msgstr "Valor per defecte"
 
-#: kreadconfig/kreadconfig.cpp:52
+#: kreadconfig/kreadconfig.cpp:54
 msgctxt "main|"
 msgid "Type of variable"
 msgstr "Tipus de variable"
 
-#: kreadconfig/kwriteconfig.cpp:33
+#: kreadconfig/kreadconfig.cpp:84 kreadconfig/kwriteconfig.cpp:69
+msgctxt "main|"
+msgid "Group name cannot be empty, use \"<default>\" for the root group"
+msgstr ""
+
+#: kreadconfig/kwriteconfig.cpp:34
 msgctxt "main|"
 msgid ""
 "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
@@ -540,12 +550,12 @@ msgstr ""
 "Tipus de variable. Utilitza «bool» per a un booleà; si no, es tracta com a "
 "una cadena"
 
-#: kreadconfig/kwriteconfig.cpp:35
+#: kreadconfig/kwriteconfig.cpp:36
 msgctxt "main|"
 msgid "Delete the designated key if enabled"
 msgstr ""
 
-#: kreadconfig/kwriteconfig.cpp:36
+#: kreadconfig/kwriteconfig.cpp:37
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr ""

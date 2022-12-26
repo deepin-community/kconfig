@@ -26,6 +26,8 @@
 #include <QTextStream>
 #include <QUrl>
 
+#include <algorithm>
+#include <array>
 #include <math.h>
 #include <stdlib.h>
 
@@ -234,11 +236,11 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
     case QMetaType::QByteArray:
         return value;
     case QMetaType::Bool: {
-        const QByteArray lower(value.toLower());
-        if (lower == "false" || lower == "no" || lower == "off" || lower == "0") {
-            return false;
-        }
-        return true;
+        static const std::array<const char *, 4> negatives = {"false", "no", "off", "0"};
+
+        return std::all_of(negatives.begin(), negatives.end(), [value](const char *negativeString) {
+            return value.compare(negativeString, Qt::CaseInsensitive) != 0;
+        });
     }
     case QMetaType::Double:
     case QMetaType::Float:
@@ -1256,4 +1258,30 @@ void KConfigGroup::reparent(KConfigBase *parent, WriteConfigFlags pFlags)
     d = KConfigGroupPrivate::create(parent, d->mName, false, false);
     oldGroup.copyTo(this, pFlags);
     oldGroup.deleteGroup(); // so that the entries with the old group name are deleted on sync
+}
+
+void KConfigGroup::moveValuesTo(const QList<const char *> &keys, KConfigGroup &other, WriteConfigFlags pFlags)
+{
+    Q_ASSERT(isValid());
+    Q_ASSERT(other.isValid());
+
+    for (const auto key : keys) {
+        const QByteArray groupName = name().toLocal8Bit();
+        const auto entry = config()->d_ptr->lookupInternalEntry(groupName, key, KEntryMap::SearchLocalized);
+
+        // Only write the entry if it is not null, if it is a global enry there is no point in moving it
+        if (!entry.mValue.isNull() && !entry.bGlobal) {
+            deleteEntry(key, pFlags);
+            KEntryMap::EntryOptions options = KEntryMap::EntryOption::EntryDirty;
+            if (entry.bDeleted) {
+                options |= KEntryMap::EntryDeleted;
+            }
+
+            if (entry.bExpand) {
+                options |= KEntryMap::EntryExpansion;
+            }
+
+            other.config()->d_ptr->setEntryData(other.name().toLocal8Bit(), key, entry.mValue, options);
+        }
+    }
 }

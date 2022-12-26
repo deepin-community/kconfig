@@ -7,10 +7,12 @@
 
 #include "kauthorized.h"
 
+#include <QDebug>
 #include <QDir>
 #include <QList>
 #include <QUrl>
 
+#include "kconfig_core_log_settings.h"
 #include <QCoreApplication>
 #include <ksharedconfig.h>
 #include <stdlib.h> // srand(), rand()
@@ -218,6 +220,17 @@ bool KAuthorized::authorize(const QString &genericAction)
     return cg.readEntry(genericAction, true);
 }
 
+bool KAuthorized::authorize(KAuthorized::GenericRestriction action)
+{
+    const QMetaEnum metaEnum = QMetaEnum::fromType<KAuthorized::GenericRestriction>();
+
+    if (metaEnum.isValid() && action != 0) {
+        return KAuthorized::authorize(QString::fromLatin1(metaEnum.valueToKey(action)).toLower());
+    }
+    qCWarning(KCONFIG_CORE_LOG) << "Invalid GenericRestriction requested" << action;
+    return false;
+}
+
 bool KAuthorized::authorizeAction(const QString &action)
 {
     MY_D if (d->blockEverything)
@@ -229,6 +242,16 @@ bool KAuthorized::authorizeAction(const QString &action)
     }
 
     return authorize(QLatin1String("action/") + action);
+}
+
+bool KAuthorized::authorizeAction(KAuthorized::GenericAction action)
+{
+    const QMetaEnum metaEnum = QMetaEnum::fromType<KAuthorized::GenericAction>();
+    if (metaEnum.isValid() && action != 0) {
+        return KAuthorized::authorizeAction(QString::fromLatin1(metaEnum.valueToKey(action)).toLower());
+    }
+    qCWarning(KCONFIG_CORE_LOG) << "Invalid GenericAction requested" << action;
+    return false;
 }
 
 #if KCONFIGCORE_BUILD_DEPRECATED_SINCE(5, 24)
@@ -309,7 +332,7 @@ KCONFIGCORE_EXPORT void loadUrlActionRestrictions(const KConfigGroup &cg)
         const QString urlProt = rule[4];
         const QString urlHost = rule[5];
         QString urlPath = rule[6];
-        const bool bEnabled = (rule[7].toLower() == QLatin1String("true"));
+        const bool bEnabled = (rule[7].compare(QLatin1String("true"), Qt::CaseInsensitive) == 0);
 
         if (refPath.startsWith(QLatin1String("$HOME"))) {
             refPath.replace(0, 5, QDir::homePath());

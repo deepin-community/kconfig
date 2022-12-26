@@ -35,6 +35,11 @@
 // the file.
 #define qCDebugFile(CATEGORY) qCDebug(CATEGORY) << m_currentFilename << ':' << m_lineCount << ":'" << m_line << "': "
 
+static bool caseInsensitiveCompare(const QStringView &a, const QLatin1String &b)
+{
+    return a.compare(b, Qt::CaseInsensitive) == 0;
+}
+
 class KonfUpdate
 {
 public:
@@ -701,11 +706,11 @@ void KonfUpdate::gotOptions(const QString &_options)
 {
     const QStringList options = _options.split(QLatin1Char{','});
     for (const auto &opt : options) {
-        const auto normalizedOpt = opt.toLower().trimmed();
+        const auto normalizedOpt = QStringView(opt).trimmed();
 
-        if (normalizedOpt == QLatin1String("copy")) {
+        if (caseInsensitiveCompare(normalizedOpt, QLatin1String("copy"))) {
             m_bCopy = true;
-        } else if (normalizedOpt == QLatin1String("overwrite")) {
+        } else if (caseInsensitiveCompare(normalizedOpt, QLatin1String("overwrite"))) {
             m_bOverwrite = true;
         }
     }
@@ -812,7 +817,6 @@ void KonfUpdate::gotScript(const QString &_script)
     proc.setStandardOutputFile(scriptOut.fileName());
     if (m_oldConfig1) {
         if (m_bDebugOutput) {
-            // scriptIn.setAutoRemove(false);
             qCDebug(KCONF_UPDATE_LOG) << "Script input stored in" << scriptIn.fileName();
         }
         KConfig cfg(scriptIn.fileName(), KConfig::SimpleConfig);
@@ -871,7 +875,6 @@ void KonfUpdate::gotScript(const QString &_script)
     }
 
     if (m_bDebugOutput) {
-        // scriptOut.setAutoRemove(false);
         qCDebug(KCONF_UPDATE_LOG) << "Script output stored in" << scriptOut.fileName();
         QFile output(scriptOut.fileName());
         if (output.open(QIODevice::ReadOnly)) {

@@ -1,8 +1,8 @@
-# Xəyyam <xxmn77@gmail.com>, 2020.
+# Xəyyam <xxmn77@gmail.com>, 2020, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"PO-Revision-Date: 2020-09-02 11:35+0400\n"
+"PO-Revision-Date: 2021-12-07 14:58+0400\n"
 "Last-Translator: Kheyyam Gojayev <xxmn77@gmail.com>\n"
 "Language-Team: Azerbaijani <kde-i18n-doc@kde.org>\n"
 "Language: az\n"
@@ -11,14 +11,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 20.08.0\n"
+"X-Generator: Lokalize 21.08.3\n"
 
 #: core/kconfig.cpp:950
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Sistem adminstratorunuzla əlaqə saxlayın."
 
-#: core/kconfigini.cpp:567
+#: core/kconfigini.cpp:562
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
@@ -450,17 +450,17 @@ msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "Qovluq yaratmaq"
 
-#: kconf_update/kconf_update.cpp:954
+#: kconf_update/kconf_update.cpp:957
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "İstifadəçi konfiqurasiya fayllarını yeniləmək üçün KDE Vasitələri"
 
-#: kconf_update/kconf_update.cpp:956
+#: kconf_update/kconf_update.cpp:959
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "İşlək seansların çıxarış nəticələrini saxla"
 
-#: kconf_update/kconf_update.cpp:959
+#: kconf_update/kconf_update.cpp:962
 msgctxt "main|"
 msgid ""
 "For unit tests only: use test directories to stay away from the user's real "
@@ -469,12 +469,12 @@ msgstr ""
 "Yalnız vahid testlər üçün: Test qovluqlarını həqiqi isitifadəçı fayllarında "
 "ayrı yerləşdir"
 
-#: kconf_update/kconf_update.cpp:961
+#: kconf_update/kconf_update.cpp:964
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "Konfiqurasiya faylının yenilənmə tələb edib etməməsini yoxla"
 
-#: kconf_update/kconf_update.cpp:964
+#: kconf_update/kconf_update.cpp:967
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Yenilənmə təlimatlarını oxumaq üçün fayllar"
@@ -494,32 +494,41 @@ msgctxt "main|"
 msgid "Display software license."
 msgstr "Tətbiq lisenziyalarını göstər"
 
-#: kreadconfig/kreadconfig.cpp:45 kreadconfig/kwriteconfig.cpp:25
+#: kreadconfig/kreadconfig.cpp:46 kreadconfig/kwriteconfig.cpp:25
 msgctxt "main|"
 msgid "Use <file> instead of global config"
 msgstr "Qlobal konfiqurasiya əvəzinə <file> istifadə et"
 
-#: kreadconfig/kreadconfig.cpp:47 kreadconfig/kwriteconfig.cpp:27
+#: kreadconfig/kreadconfig.cpp:49 kreadconfig/kwriteconfig.cpp:28
 msgctxt "main|"
-msgid "Group to look in. Use repeatedly for nested groups."
-msgstr "Qrupda axtar. iç-içə qruplar üçün təkrar istifadə et"
+msgid ""
+"Group to look in. Use \"<default>\" for the root group, or use repeatedly "
+"for nested groups."
+msgstr ""
+"Daxilində axtarış ediləcək qrup. Kök qrup üçün \"<default>\" istifadə edin "
+"və ya iç-içə qruplar üçün təkrar istifadə edin."
 
-#: kreadconfig/kreadconfig.cpp:50 kreadconfig/kwriteconfig.cpp:30
+#: kreadconfig/kreadconfig.cpp:52 kreadconfig/kwriteconfig.cpp:31
 msgctxt "main|"
 msgid "Key to look for"
 msgstr "Axtarılacaq açar"
 
-#: kreadconfig/kreadconfig.cpp:51
+#: kreadconfig/kreadconfig.cpp:53
 msgctxt "main|"
 msgid "Default value"
 msgstr "Susmaya görə ölçü"
 
-#: kreadconfig/kreadconfig.cpp:52
+#: kreadconfig/kreadconfig.cpp:54
 msgctxt "main|"
 msgid "Type of variable"
 msgstr "Dəyişkən növ"
 
-#: kreadconfig/kwriteconfig.cpp:33
+#: kreadconfig/kreadconfig.cpp:84 kreadconfig/kwriteconfig.cpp:69
+msgctxt "main|"
+msgid "Group name cannot be empty, use \"<default>\" for the root group"
+msgstr "Qrup adı boş ola bilməz, kök qrupu üçün \"<default>\" istifadə edin"
+
+#: kreadconfig/kwriteconfig.cpp:34
 msgctxt "main|"
 msgid ""
 "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
@@ -528,12 +537,12 @@ msgstr ""
 "Dəyişkən növ. Məntiqi dəyişkələr üçün \"bool\" istifadə et, əks halda "
 "dəyişkən sətir kimi qəbul ediləcək"
 
-#: kreadconfig/kwriteconfig.cpp:35
+#: kreadconfig/kwriteconfig.cpp:36
 msgctxt "main|"
 msgid "Delete the designated key if enabled"
 msgstr "Aktiv edildikdə təyin olunmuş açarı silin"
 
-#: kreadconfig/kwriteconfig.cpp:36
+#: kreadconfig/kwriteconfig.cpp:37
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr ""

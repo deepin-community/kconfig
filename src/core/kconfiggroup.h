@@ -92,7 +92,7 @@ public:
     KConfigGroup(const KConfigGroup &);
     KConfigGroup &operator=(const KConfigGroup &);
 
-    ~KConfigGroup();
+    ~KConfigGroup() override;
 
     /**
      * Whether the group is valid.
@@ -193,6 +193,14 @@ public:
      * @since 4.1
      */
     void reparent(KConfigBase *parent, WriteConfigFlags pFlags = Normal);
+
+    /**
+     * Moves the key-value pairs from one config group to the other.
+     * In case the entries do not exist the key is ignored.
+     *
+     * @since 5.88
+     */
+    void moveValuesTo(const QList<const char *> &keys, KConfigGroup &other, WriteConfigFlags pFlags = Normal);
 
     /**
      * Returns the group that this group belongs to

@@ -26,7 +26,7 @@ msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "कृपया अपने तंत्र व्यवस्थापक से संपर्क करें। "
 
-#: core/kconfigini.cpp:567
+#: core/kconfigini.cpp:562
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
@@ -458,17 +458,17 @@ msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "फ़ोल्डर बनाएँ"
 
-#: kconf_update/kconf_update.cpp:954
+#: kconf_update/kconf_update.cpp:957
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "उपयोगकर्ता कॉन्फ़िगरेशन फ़ाइलों को अद्यतन करने के लिए केडीई उपकरण "
 
-#: kconf_update/kconf_update.cpp:956
+#: kconf_update/kconf_update.cpp:959
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "स्क्रिप्ट से आउटपुट परिणाम रखें "
 
-#: kconf_update/kconf_update.cpp:959
+#: kconf_update/kconf_update.cpp:962
 msgctxt "main|"
 msgid ""
 "For unit tests only: use test directories to stay away from the user's real "
@@ -477,12 +477,12 @@ msgstr ""
 "केवल यूनिट परीक्षणों के लिए: उपयोगकर्ता की वास्तविक फ़ाइलों से दूर रहने के लिए परीक्षण "
 "निर्देशिकाओं का उपयोग करें "
 
-#: kconf_update/kconf_update.cpp:961
+#: kconf_update/kconf_update.cpp:964
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr "जांचें कि क्या कॉन्फ़िगर फ़ाइल को अपडेट करने की आवश्यकता है "
 
-#: kconf_update/kconf_update.cpp:964
+#: kconf_update/kconf_update.cpp:967
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "फ़ाइल (लों) से अद्यतन निर्देश पढ़ने के लिए "
@@ -502,32 +502,42 @@ msgctxt "main|"
 msgid "Display software license."
 msgstr "सोफ्टवेयर का अनुज्ञापत्र दिखाएँ"
 
-#: kreadconfig/kreadconfig.cpp:45 kreadconfig/kwriteconfig.cpp:25
+#: kreadconfig/kreadconfig.cpp:46 kreadconfig/kwriteconfig.cpp:25
 msgctxt "main|"
 msgid "Use <file> instead of global config"
 msgstr "वैश्विक कॉन्फ़िग के बजाए <file> इस्तेमाल करें"
 
-#: kreadconfig/kreadconfig.cpp:47 kreadconfig/kwriteconfig.cpp:27
+#: kreadconfig/kreadconfig.cpp:49 kreadconfig/kwriteconfig.cpp:28
+#, fuzzy
+#| msgctxt "main|"
+#| msgid "Group to look in. Use repeatedly for nested groups."
 msgctxt "main|"
-msgid "Group to look in. Use repeatedly for nested groups."
+msgid ""
+"Group to look in. Use \"<default>\" for the root group, or use repeatedly "
+"for nested groups."
 msgstr "समूह जिसमे दिखना है. अंतर समूह के लिए दोहराएँ"
 
-#: kreadconfig/kreadconfig.cpp:50 kreadconfig/kwriteconfig.cpp:30
+#: kreadconfig/kreadconfig.cpp:52 kreadconfig/kwriteconfig.cpp:31
 msgctxt "main|"
 msgid "Key to look for"
 msgstr "कुंजी जिसे देखा जाना है"
 
-#: kreadconfig/kreadconfig.cpp:51
+#: kreadconfig/kreadconfig.cpp:53
 msgctxt "main|"
 msgid "Default value"
 msgstr "पूर्वन्यस्त मूल्य"
 
-#: kreadconfig/kreadconfig.cpp:52
+#: kreadconfig/kreadconfig.cpp:54
 msgctxt "main|"
 msgid "Type of variable"
 msgstr "परिवर्तनीय का प्रकार"
 
-#: kreadconfig/kwriteconfig.cpp:33
+#: kreadconfig/kreadconfig.cpp:84 kreadconfig/kwriteconfig.cpp:69
+msgctxt "main|"
+msgid "Group name cannot be empty, use \"<default>\" for the root group"
+msgstr ""
+
+#: kreadconfig/kwriteconfig.cpp:34
 msgctxt "main|"
 msgid ""
 "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
@@ -536,12 +546,12 @@ msgstr ""
 "परिवर्तनीय का प्रकार. इस्तेमाल करें \"bool\" बूलियन के लिए, अन्यथा यह एक स्ट्रिंग की तरह "
 "समझा जाएगा"
 
-#: kreadconfig/kwriteconfig.cpp:35
+#: kreadconfig/kwriteconfig.cpp:36
 msgctxt "main|"
 msgid "Delete the designated key if enabled"
 msgstr "सक्षम होने पर निर्दिष्ट कुंजी को हटा दें "
 
-#: kreadconfig/kwriteconfig.cpp:36
+#: kreadconfig/kwriteconfig.cpp:37
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr "मूल्य जो लिखा जाना है. अनिवार्य है, शेल में खाली के लिए ''  का इस्तेमाल करें"

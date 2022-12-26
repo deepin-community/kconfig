@@ -27,7 +27,7 @@ msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Παρακαλώ επικοινωνήστε με τον διαχειριστή του συστήματός σας."
 
-#: core/kconfigini.cpp:567
+#: core/kconfigini.cpp:562
 #, qt-format
 msgctxt "KConfigIniBackend|"
 msgid "Configuration file \"%1\" not writable.\n"
@@ -459,17 +459,17 @@ msgctxt "KStandardShortcut|@action"
 msgid "Create Folder"
 msgstr "Δημιουργία φακέλου"
 
-#: kconf_update/kconf_update.cpp:954
+#: kconf_update/kconf_update.cpp:957
 msgctxt "main|"
 msgid "KDE Tool for updating user configuration files"
 msgstr "Εργαλείο του KDE για ενημέρωση των αρχείων διαμόρφωσης των χρηστών"
 
-#: kconf_update/kconf_update.cpp:956
+#: kconf_update/kconf_update.cpp:959
 msgctxt "main|"
 msgid "Keep output results from scripts"
 msgstr "Διατήρηση των αποτελεσμάτων των σεναρίων κελύφους"
 
-#: kconf_update/kconf_update.cpp:959
+#: kconf_update/kconf_update.cpp:962
 msgctxt "main|"
 msgid ""
 "For unit tests only: use test directories to stay away from the user's real "
@@ -478,13 +478,13 @@ msgstr ""
 "Για ελέγχους από τον προγραμματιστή και μόνο: χρησιμοποιήστε δοκιμαστικούς "
 "καταλόγους για να μείνετε μακρυά από τα πραγματικά αρχεία του χρήστη"
 
-#: kconf_update/kconf_update.cpp:961
+#: kconf_update/kconf_update.cpp:964
 msgctxt "main|"
 msgid "Check whether config file itself requires updating"
 msgstr ""
 "Έλεγχος για το αν αυτό καθαυτό το αρχείο διαμόρφωσης χρειάζεται ενημέρωση"
 
-#: kconf_update/kconf_update.cpp:964
+#: kconf_update/kconf_update.cpp:967
 msgctxt "main|"
 msgid "File(s) to read update instructions from"
 msgstr "Αρχείο(α) για ανάγνωση εντολών ενημέρωσης"
@@ -504,33 +504,43 @@ msgctxt "main|"
 msgid "Display software license."
 msgstr "Εμφάνιση άδειας χρήσης λογισμικού."
 
-#: kreadconfig/kreadconfig.cpp:45 kreadconfig/kwriteconfig.cpp:25
+#: kreadconfig/kreadconfig.cpp:46 kreadconfig/kwriteconfig.cpp:25
 msgctxt "main|"
 msgid "Use <file> instead of global config"
 msgstr "Χρήση <αρχείου> αντί καθολικής διαμόρφωσης"
 
-#: kreadconfig/kreadconfig.cpp:47 kreadconfig/kwriteconfig.cpp:27
+#: kreadconfig/kreadconfig.cpp:49 kreadconfig/kwriteconfig.cpp:28
+#, fuzzy
+#| msgctxt "main|"
+#| msgid "Group to look in. Use repeatedly for nested groups."
 msgctxt "main|"
-msgid "Group to look in. Use repeatedly for nested groups."
+msgid ""
+"Group to look in. Use \"<default>\" for the root group, or use repeatedly "
+"for nested groups."
 msgstr ""
 "Ομάδα στην οποία θα γίνει η αναζήτηση. Επαναλάβετε για εμφωλευμένες ομάδες."
 
-#: kreadconfig/kreadconfig.cpp:50 kreadconfig/kwriteconfig.cpp:30
+#: kreadconfig/kreadconfig.cpp:52 kreadconfig/kwriteconfig.cpp:31
 msgctxt "main|"
 msgid "Key to look for"
 msgstr "Κλειδί για αναζήτηση"
 
-#: kreadconfig/kreadconfig.cpp:51
+#: kreadconfig/kreadconfig.cpp:53
 msgctxt "main|"
 msgid "Default value"
 msgstr "Προκαθορισμένη τιμή"
 
-#: kreadconfig/kreadconfig.cpp:52
+#: kreadconfig/kreadconfig.cpp:54
 msgctxt "main|"
 msgid "Type of variable"
 msgstr "Τύπος μεταβλητής"
 
-#: kreadconfig/kwriteconfig.cpp:33
+#: kreadconfig/kreadconfig.cpp:84 kreadconfig/kwriteconfig.cpp:69
+msgctxt "main|"
+msgid "Group name cannot be empty, use \"<default>\" for the root group"
+msgstr ""
+
+#: kreadconfig/kwriteconfig.cpp:34
 msgctxt "main|"
 msgid ""
 "Type of variable. Use \"bool\" for a boolean, otherwise it is treated as a "
@@ -539,12 +549,12 @@ msgstr ""
 "Τύπος μεταβλητής. Χρησιμοποιήστε \"bool\" για δυαδική, αλλιώς θεωρείται "
 "συμβολοσειρά."
 
-#: kreadconfig/kwriteconfig.cpp:35
+#: kreadconfig/kwriteconfig.cpp:36
 msgctxt "main|"
 msgid "Delete the designated key if enabled"
 msgstr "Να διαγραφεί το σημειωμένο κλειδί αν είναι ενεργό"
 
-#: kreadconfig/kwriteconfig.cpp:36
+#: kreadconfig/kwriteconfig.cpp:37
 msgctxt "main|"
 msgid "The value to write. Mandatory, on a shell use '' for empty"
 msgstr ""

@@ -16,6 +16,7 @@
 #include <kdesktopfile.h>
 #include <qtemporarydir.h>
 
+#include <kauthorized.h>
 #include <kconfiggroup.h>
 #include <kconfigwatcher.h>
 #include <ksharedconfig.h>
@@ -1898,6 +1899,47 @@ void KConfigTest::testNewlines()
 #endif
 }
 
+void KConfigTest::testMoveValuesTo()
+{
+    QTemporaryFile file;
+    QVERIFY(file.open());
+    // Prepare kdeglobals
+    {
+        KConfig glob(QStringLiteral("kdeglobals"));
+        KConfigGroup general(&glob, "TestGroup");
+        general.writeEntry("GlobalKey", "PlsDeleteMe");
+        QVERIFY(glob.sync());
+    }
+
+    KConfigGroup grp = KSharedConfig::openConfig(file.fileName())->group("TestGroup");
+
+    grp.writeEntry("test1", "first_value");
+    grp.writeEntry("test_empty", "");
+    grp.writeEntry("other", "other_value");
+    grp.writePathEntry("my_path", QStringLiteral("~/somepath"));
+    // because this key is from the global file it should be explicitly deleted
+    grp.deleteEntry("GlobalKey");
+
+    QTemporaryFile targetFile;
+    QVERIFY(targetFile.open());
+    targetFile.close();
+    KConfigGroup targetGroup = KSharedConfig::openConfig(targetFile.fileName(), KConfig::SimpleConfig)->group("MoveToGroup");
+
+    grp.moveValuesTo({"test1", "test_empty", "does_not_exist", "my_path", "GlobalKey"}, targetGroup);
+    QVERIFY(grp.config()->isDirty());
+    QVERIFY(targetGroup.config()->isDirty());
+
+    QCOMPARE(grp.keyList(), QStringList{QStringLiteral("other")});
+    QStringList expectedKeyList{QStringLiteral("my_path"), QStringLiteral("test1"), QStringLiteral("test_empty")};
+    QCOMPARE(targetGroup.keyList(), expectedKeyList);
+    QCOMPARE(targetGroup.readEntry("test1"), QStringLiteral("first_value"));
+
+    targetGroup.sync();
+    QFile targetReadFile(targetFile.fileName());
+    targetReadFile.open(QFile::ReadOnly);
+    QVERIFY(targetReadFile.readAll().contains(QByteArray("my_path[$e]=~/somepath")));
+}
+
 void KConfigTest::testXdgListEntry()
 {
     QTemporaryFile file;
@@ -1932,18 +1974,30 @@ void KConfigTest::testXdgListEntry()
 void KConfigTest::testThreads()
 {
     QThreadPool::globalInstance()->setMaxThreadCount(6);
-    QList<QFuture<void>> futures;
     // Run in parallel some tests that work on different config files,
     // otherwise unexpected things might indeed happen.
-    futures << QtConcurrent::run(this, &KConfigTest::testAddConfigSources);
-    futures << QtConcurrent::run(this, &KConfigTest::testSimple);
-    futures << QtConcurrent::run(this, &KConfigTest::testDefaults);
-    futures << QtConcurrent::run(this, &KConfigTest::testSharedConfig);
-    futures << QtConcurrent::run(this, &KConfigTest::testSharedConfig);
+#if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    const QList<QFuture<void>> futures = {
+        QtConcurrent::run(&KConfigTest::testAddConfigSources, this),
+        QtConcurrent::run(&KConfigTest::testSimple, this),
+        QtConcurrent::run(&KConfigTest::testDefaults, this),
+        QtConcurrent::run(&KConfigTest::testSharedConfig, this),
+        QtConcurrent::run(&KConfigTest::testSharedConfig, this),
+    };
+#else
+    const QList<QFuture<void>> futures = {
+        QtConcurrent::run(this, &KConfigTest::testAddConfigSources),
+        QtConcurrent::run(this, &KConfigTest::testSimple),
+        QtConcurrent::run(this, &KConfigTest::testDefaults),
+        QtConcurrent::run(this, &KConfigTest::testSharedConfig),
+        QtConcurrent::run(this, &KConfigTest::testSharedConfig),
+    };
+#endif
+
     // QEXPECT_FAIL triggers race conditions, it should be fixed to use QThreadStorage...
     // futures << QtConcurrent::run(this, &KConfigTest::testDeleteWhenLocalized);
     // futures << QtConcurrent::run(this, &KConfigTest::testEntryMap);
-    for (QFuture<void> f : std::as_const(futures)) {
+    for (QFuture<void> f : futures) {
         f.waitForFinished();
     }
 }
@@ -2028,6 +2082,21 @@ void KConfigTest::testNotify()
     QCOMPARE(otherWatcherSpy.count(), 1);
     QCOMPARE(otherWatcherSpy[0][0].value<KConfigGroup>().name(), QStringLiteral("TopLevelGroup"));
     QCOMPARE(otherWatcherSpy[0][1].value<QByteArrayList>(), QByteArrayList({"someGlobalEntry"}));
+}
+
+void KConfigTest::testKAuthorizeEnums()
+{
+    KSharedConfig::Ptr config = KSharedConfig::openConfig();
+    KConfigGroup actionRestrictions = config->group("KDE Action Restrictions");
+    actionRestrictions.writeEntry("shell_access", false);
+    actionRestrictions.writeEntry("action/open_with", false);
+
+    QVERIFY(!KAuthorized::authorize(KAuthorized::SHELL_ACCESS));
+    QVERIFY(!KAuthorized::authorizeAction(KAuthorized::OPEN_WITH));
+    actionRestrictions.deleteGroup();
+
+    QVERIFY(!KAuthorized::authorize((KAuthorized::GenericRestriction)0));
+    QVERIFY(!KAuthorized::authorizeAction((KAuthorized::GenericAction)0));
 }
 
 void KConfigTest::testKdeglobalsVsDefault()

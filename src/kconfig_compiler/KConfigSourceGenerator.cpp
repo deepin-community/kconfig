@@ -170,7 +170,9 @@ void KConfigSourceGenerator::createSingletonImplementation()
             stream() << "     return;\n";
             stream() << "  }\n";
             stream() << "  new " << cfg().className << "(";
-            if (isString) {
+            if (parseResult.cfgStateConfig) {
+                stream() << "KSharedConfig::openStateConfig(" << arg << ")";
+            } else if (isString) {
                 stream() << "KSharedConfig::openConfig(" << arg << ")";
             } else {
                 stream() << "std::move(" << arg << ")";
@@ -232,7 +234,9 @@ void KConfigSourceGenerator::createConstructorParameterList()
 void KConfigSourceGenerator::createParentConstructorCall()
 {
     stream() << cfg().inherits << "(";
-    if (!parseResult.cfgFileName.isEmpty()) {
+    if (parseResult.cfgStateConfig) {
+        stream() << " KSharedConfig::openStateConfig(QStringLiteral( \"" << parseResult.cfgFileName << "\") ";
+    } else if (!parseResult.cfgFileName.isEmpty()) {
         stream() << " QStringLiteral( \"" << parseResult.cfgFileName << "\" ";
     }
     if (parseResult.cfgFileNameArg) {
@@ -314,7 +318,8 @@ void KConfigSourceGenerator::createNormalEntry(const CfgEntry *entry, const QStr
 
     for (const CfgEntry::Choice &choice : std::as_const(entry->choices.choices)) {
         if (!choice.val.isEmpty()) {
-            stream() << "  " << itemVarStr << "->setValueForChoice(QStringLiteral( \"" << choice.name << "\" ), QStringLiteral( \"" << choice.val << "\" ));\n";
+            stream() << "  " << innerItemVarStr << "->setValueForChoice(QStringLiteral( \"" << choice.name << "\" ), QStringLiteral( \"" << choice.val
+                     << "\" ));\n";
         }
     }
 
@@ -363,7 +368,7 @@ void KConfigSourceGenerator::createIndexedEntry(const CfgEntry *entry, const QSt
 
         for (const CfgEntry::Choice &choice : std::as_const(entry->choices.choices)) {
             if (!choice.val.isEmpty()) {
-                stream() << "  " << itemVarStr << "->setValueForChoice(QStringLiteral( \"" << choice.name << "\" ), QStringLiteral( \"" << choice.val
+                stream() << "  " << innerItemVarStr << "->setValueForChoice(QStringLiteral( \"" << choice.name << "\" ), QStringLiteral( \"" << choice.val
                          << "\" ));\n";
             }
         }

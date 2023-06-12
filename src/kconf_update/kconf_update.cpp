@@ -5,7 +5,9 @@
     SPDX-License-Identifier: LGPL-2.0-only
 */
 
-#include <config-kconf.h> // CMAKE_INSTALL_PREFIX
+#include <config-kconf.h> // CMAKE_INSTALL_FULL_LIBDIR
+
+#include <cstdlib>
 
 #include <QCoreApplication>
 #include <QDate>
@@ -202,11 +204,11 @@ QStringList KonfUpdate::findUpdateFiles(bool dirtyOnly)
             QFileInfo info(file);
 
             KConfigGroup cg(m_config, fileName);
-            const QDateTime ctime = QDateTime::fromSecsSinceEpoch(cg.readEntry("ctime", 0u));
-            const QDateTime mtime = QDateTime::fromSecsSinceEpoch(cg.readEntry("mtime", 0u));
+            const qint64 ctime = cg.readEntry("ctime", 0);
+            const qint64 mtime = cg.readEntry("mtime", 0);
             if (!dirtyOnly //
-                || (ctime.isValid() && ctime != info.birthTime()) //
-                || mtime != info.lastModified()) {
+                || (ctime != 0 && ctime != info.birthTime().toSecsSinceEpoch()) //
+                || mtime != info.lastModified().toSecsSinceEpoch()) {
                 result.append(file);
             }
         }
@@ -765,7 +767,7 @@ void KonfUpdate::gotScript(const QString &_script)
     QString path = QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("kconf_update/") + script);
     if (path.isEmpty()) {
         if (interpreter.isEmpty()) {
-            path = QLatin1String{CMAKE_INSTALL_PREFIX "/" LIB_INSTALL_DIR "/kconf_update_bin/"} + script;
+            path = QStringLiteral("%1/kconf_update_bin/%2").arg(QStringLiteral(CMAKE_INSTALL_FULL_LIBDIR), script);
             if (!QFile::exists(path)) {
                 path = QStandardPaths::findExecutable(script);
             }
@@ -863,7 +865,7 @@ void KonfUpdate::gotScript(const QString &_script)
     }
     proc.close();
 
-    if (result) {
+    if (result != EXIT_SUCCESS) {
         qCDebug(KCONF_UPDATE_LOG) << m_currentFilename << ": !! An error occurred while running" << cmd;
         return;
     }

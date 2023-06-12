@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.16)
 
-set(KF_VERSION "5.90.0") # handled by release scripts
+set(KF_VERSION "5.103.0") # handled by release scripts
 project(KConfig VERSION ${KF_VERSION})
 
 include(FeatureSummary)
-find_package(ECM 5.90.0  NO_MODULE)
+find_package(ECM 5.103.0  NO_MODULE)
 set_package_properties(ECM PROPERTIES TYPE REQUIRED DESCRIPTION "Extra CMake Modules." URL "https://commits.kde.org/extra-cmake-modules")
 feature_summary(WHAT REQUIRED_PACKAGES_NOT_FOUND FATAL_ON_MISSING_REQUIRED_PACKAGES)
 
@@ -22,6 +22,7 @@ include(ECMMarkNonGuiExecutable)
 include(ECMPoQmTools)
 include(ECMAddQch)
 include(ECMQtDeclareLoggingCategory)
+include(ECMDeprecationSettings)
 
 set(REQUIRED_QT_VERSION 5.15.2)
 
@@ -30,10 +31,19 @@ option(KCONFIG_USE_GUI "Build components using Qt${QT_MAJOR_VERSION}Gui" ON)
 if(KCONFIG_USE_GUI)
     find_package(Qt${QT_MAJOR_VERSION} ${REQUIRED_QT_VERSION} CONFIG REQUIRED Gui)
 endif()
-find_package(Qt${QT_MAJOR_VERSION} ${REQUIRED_QT_VERSION} OPTIONAL_COMPONENTS Qml)
+
+option(KCONFIG_USE_QML "Build components using Qt${QT_MAJOR_VERSION}Qml" ON)
+
+if(KCONFIG_USE_QML)
+    find_package(Qt${QT_MAJOR_VERSION} ${REQUIRED_QT_VERSION} REQUIRED COMPONENTS Qml)
+endif()
 
 if (NOT ANDROID)
-    option(KCONFIG_USE_DBUS "Build components using Qt${QT_MAJOR_VERSION}DBus" ON)
+    set(default_kconfig_use_dbus ON)
+    if(WIN32)
+        set(default_kconfig_use_dbus OFF)
+    endif()
+    option(KCONFIG_USE_DBUS "Build components using Qt${QT_MAJOR_VERSION}DBus" ${default_kconfig_use_dbus})
     if(KCONFIG_USE_DBUS)
         find_package(Qt${QT_MAJOR_VERSION} ${REQUIRED_QT_VERSION} CONFIG REQUIRED DBus)
     endif()
@@ -51,7 +61,9 @@ ecm_setup_version(PROJECT VARIABLE_PREFIX KCONFIG
                         PACKAGE_VERSION_FILE "${CMAKE_CURRENT_BINARY_DIR}/KF5ConfigConfigVersion.cmake"
                         SOVERSION 5)
 
-add_definitions(-DQT_DISABLE_DEPRECATED_BEFORE=0x050f02)
+ecm_set_disabled_deprecation_versions(
+    QT 5.15.2
+)
 
 add_subdirectory(src)
 if (BUILD_TESTING)
@@ -59,7 +71,7 @@ if (BUILD_TESTING)
 endif()
 
 include (ECMPoQmTools)
-ecm_install_po_files_as_qm(po)
+ecm_install_po_files_as_qm(poqm)
 
 
 # create a Config.cmake and a ConfigVersion.cmake file and install them
@@ -97,7 +109,7 @@ install(EXPORT KF5ConfigCompilerTargets DESTINATION "${CMAKECONFIG_INSTALL_DIR}"
         FILE KF5ConfigCompilerTargets.cmake NAMESPACE KF5:: COMPONENT Devel)
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/kconfig_version.h
-        DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF} COMPONENT Devel )
+        DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KConfig COMPONENT Devel)
 
 
 feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)

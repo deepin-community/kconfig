@@ -31,7 +31,11 @@
 #include <QSet>
 #include <QThreadStorage>
 
+#include <algorithm>
+#include <iterator>
 #include <set>
+#include <string_view>
+#include <unordered_set>
 
 #if KCONFIG_USE_DBUS
 #include <QDBusConnection>
@@ -126,10 +130,16 @@ bool KConfigPrivate::lockLocal()
     return true;
 }
 
+static bool isGroupOrSubGroupMatch(KEntryMapConstIterator entryMapIt, const QByteArray &group)
+{
+    const QByteArray &entryGroup = entryMapIt.key().mGroup;
+    Q_ASSERT_X(entryGroup.startsWith(group), Q_FUNC_INFO, "Precondition");
+    return entryGroup.size() == group.size() || entryGroup[group.size()] == '\x1d';
+}
+
 void KConfigPrivate::copyGroup(const QByteArray &source, const QByteArray &destination, KConfigGroup *otherGroup, KConfigBase::WriteConfigFlags flags) const
 {
     KEntryMap &otherMap = otherGroup->config()->d_ptr->entryMap;
-    const int len = source.length();
     const bool sameName = (destination == source);
 
     // we keep this bool outside the for loop so that if
@@ -137,16 +147,10 @@ void KConfigPrivate::copyGroup(const QByteArray &source, const QByteArray &desti
     // as dirty erroneously
     bool dirtied = false;
 
-    for (auto entryMapIt = entryMap.cbegin(); entryMapIt != entryMap.cend(); ++entryMapIt) {
-        const QByteArray &group = entryMapIt.key().mGroup;
-
-        if (!group.startsWith(source)) { // nothing to do
-            continue;
-        }
-
+    entryMap.forEachEntryWhoseGroupStartsWith(source, [&source, &destination, flags, &otherMap, sameName, &dirtied](KEntryMapConstIterator entryMapIt) {
         // don't copy groups that start with the same prefix, but are not sub-groups
-        if (group.length() > len && group[len] != '\x1d') {
-            continue;
+        if (!isGroupOrSubGroupMatch(entryMapIt, source)) {
+            return;
         }
 
         KEntryKey newKey = entryMapIt.key();
@@ -156,10 +160,10 @@ void KConfigPrivate::copyGroup(const QByteArray &source, const QByteArray &desti
         }
 
         if (!sameName) {
-            newKey.mGroup.replace(0, len, destination);
+            newKey.mGroup.replace(0, source.size(), destination);
         }
 
-        KEntry entry = entryMap[entryMapIt.key()];
+        KEntry entry = entryMapIt.value();
         dirtied = entry.bDirty = flags & KConfigBase::Persistent;
 
         if (flags & KConfigBase::Global) {
@@ -171,7 +175,7 @@ void KConfigPrivate::copyGroup(const QByteArray &source, const QByteArray &desti
         }
 
         otherMap[newKey] = entry;
-    }
+    });
 
     if (dirtied) {
         otherGroup->config()->d_ptr->bDirty = true;
@@ -273,71 +277,83 @@ KConfig::~KConfig()
     delete d;
 }
 
+static bool isNonDeletedKey(KEntryMapConstIterator entryMapIt)
+{
+    return !entryMapIt.key().mKey.isNull() && !entryMapIt->bDeleted;
+}
+
+static int findFirstGroupEndPos(const QByteArray &groupFullName, int from = 0)
+{
+    const auto index = groupFullName.indexOf('\x1d', from);
+    return index == -1 ? groupFullName.size() : index;
+}
+
+// std::string_view is used because QByteArrayView does not exist in Qt 5.
+// std::unordered_set rather than QSet is used because there is no qHash() overload for std::string_view in Qt 5.
+using ByteArrayViewSet = std::unordered_set<std::string_view>;
+
+static QStringList stringListFromUtf8Collection(const ByteArrayViewSet &source)
+{
+    QStringList list;
+    list.reserve(source.size());
+    std::transform(source.cbegin(), source.cend(), std::back_inserter(list), [](std::string_view view) {
+        return QString::fromUtf8(view.data(), view.size());
+    });
+    return list;
+}
+
 QStringList KConfig::groupList() const
 {
     Q_D(const KConfig);
-    QSet<QString> groups;
+    ByteArrayViewSet groups;
 
     for (auto entryMapIt = d->entryMap.cbegin(); entryMapIt != d->entryMap.cend(); ++entryMapIt) {
-        const KEntryKey &key = entryMapIt.key();
-        const QByteArray group = key.mGroup;
-        if (key.mKey.isNull() && !group.isEmpty() && group != "<default>" && group != "$Version") {
-            const QString groupname = QString::fromUtf8(group);
-            groups << groupname.left(groupname.indexOf(QLatin1Char('\x1d')));
+        const QByteArray &group = entryMapIt.key().mGroup;
+        if (isNonDeletedKey(entryMapIt) && !group.isEmpty() && group != "<default>" && group != "$Version") {
+            groups.emplace(group.constData(), findFirstGroupEndPos(group));
         }
     }
 
-    return groups.values();
+    return stringListFromUtf8Collection(groups);
 }
 
 QStringList KConfigPrivate::groupList(const QByteArray &group) const
 {
-    QByteArray theGroup = group + '\x1d';
-    QSet<QString> groups;
+    const QByteArray theGroup = group + '\x1d';
+    ByteArrayViewSet groups;
 
-    for (auto entryMapIt = entryMap.cbegin(); entryMapIt != entryMap.cend(); ++entryMapIt) {
-        const KEntryKey &key = entryMapIt.key();
-        if (key.mKey.isNull() && key.mGroup.startsWith(theGroup)) {
-            const QString groupname = QString::fromUtf8(key.mGroup.mid(theGroup.length()));
-            groups << groupname.left(groupname.indexOf(QLatin1Char('\x1d')));
+    entryMap.forEachEntryWhoseGroupStartsWith(theGroup, [&theGroup, &groups](KEntryMapConstIterator entryMapIt) {
+        if (isNonDeletedKey(entryMapIt)) {
+            const QByteArray &entryGroup = entryMapIt.key().mGroup;
+            const auto subgroupStartPos = theGroup.size();
+            const auto subgroupEndPos = findFirstGroupEndPos(entryGroup, subgroupStartPos);
+            groups.emplace(entryGroup.constData() + subgroupStartPos, subgroupEndPos - subgroupStartPos);
         }
-    }
+    });
 
-    return groups.values();
+    return stringListFromUtf8Collection(groups);
 }
 
-static bool isGroupOrSubGroupMatch(const QByteArray &potentialGroup, const QByteArray &group)
-{
-    if (!potentialGroup.startsWith(group)) {
-        return false;
-    }
-    return potentialGroup.length() == group.length() || potentialGroup[group.length()] == '\x1d';
-}
-
-// List all sub groups, including subsubgroups
+/// Returns @p parentGroup itself, all its subgroups, subsubgroups, and so on, including deleted groups.
 QSet<QByteArray> KConfigPrivate::allSubGroups(const QByteArray &parentGroup) const
 {
     QSet<QByteArray> groups;
 
-    for (KEntryMap::const_iterator entryMapIt = entryMap.begin(); entryMapIt != entryMap.end(); ++entryMapIt) {
+    entryMap.forEachEntryWhoseGroupStartsWith(parentGroup, [&parentGroup, &groups](KEntryMapConstIterator entryMapIt) {
         const KEntryKey &key = entryMapIt.key();
-        if (key.mKey.isNull() && isGroupOrSubGroupMatch(key.mGroup, parentGroup)) {
+        if (key.mKey.isNull() && isGroupOrSubGroupMatch(entryMapIt, parentGroup)) {
             groups << key.mGroup;
         }
-    }
+    });
+
     return groups;
 }
 
 bool KConfigPrivate::hasNonDeletedEntries(const QByteArray &group) const
 {
-    for (KEntryMap::const_iterator it = entryMap.begin(); it != entryMap.end(); ++it) {
-        const KEntryKey &key = it.key();
-        // Check for any non-deleted entry
-        if (isGroupOrSubGroupMatch(key.mGroup, group) && !key.mKey.isNull() && !it->bDeleted) {
-            return true;
-        }
-    }
-    return false;
+    return entryMap.anyEntryWhoseGroupStartsWith(group, [&group](KEntryMapConstIterator entryMapIt) {
+        return isGroupOrSubGroupMatch(entryMapIt, group) && isNonDeletedKey(entryMapIt);
+    });
 }
 
 QStringList KConfigPrivate::keyListImpl(const QByteArray &theGroup) const
@@ -351,9 +367,8 @@ QStringList KConfigPrivate::keyListImpl(const QByteArray &theGroup) const
 
         std::set<QString> tmp; // unique set, sorted for unittests
         for (; it != theEnd && it.key().mGroup == theGroup; ++it) {
-            const KEntryKey &key = it.key();
-            if (!key.mKey.isNull() && !it->bDeleted) {
-                tmp.insert(QString::fromUtf8(key.mKey));
+            if (isNonDeletedKey(it)) {
+                tmp.insert(QString::fromUtf8(it.key().mKey));
             }
         }
         keys = QList<QString>(tmp.begin(), tmp.end());

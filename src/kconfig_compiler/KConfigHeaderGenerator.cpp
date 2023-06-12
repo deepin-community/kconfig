@@ -114,6 +114,9 @@ void KConfigHeaderGenerator::createHeaders()
     }
 
     addHeaders({QStringLiteral("QCoreApplication"), QStringLiteral("QDebug")});
+    if (!cfg().dpointer && parseResult.hasNonModifySignals) {
+        addHeaders({QStringLiteral("QSet")});
+    }
     stream() << '\n';
 
     addHeaders(parseResult.includes);
@@ -217,20 +220,11 @@ void KConfigHeaderGenerator::implementEnums()
 void KConfigHeaderGenerator::createSignals()
 {
     // Signal definition.
-    const bool hasSignals = !parseResult.signalList.isEmpty();
-
-    unsigned val = 1 << parseResult.signalList.size();
-    if (!val) {
-        std::cerr << "Too many signals to create unique bit masks" << std::endl;
-        exit(1);
-    }
-
-    if (!hasSignals) {
+    if (parseResult.signalList.isEmpty()) {
         return;
     }
 
     stream() << "\n    enum {\n";
-    val = 1;
 
     // HACK: Use C-Style for add a comma in all but the last element,
     // just to make the source generated code equal to the old one.
@@ -238,15 +232,13 @@ void KConfigHeaderGenerator::createSignals()
     // a last comma, as it's valid c++.
     for (int i = 0, end = parseResult.signalList.size(); i < end; i++) {
         auto signal = parseResult.signalList.at(i);
-        stream() << whitespace() << "  " << signalEnumName(signal.name) << " = 0x" << Qt::hex << val;
+        stream() << whitespace() << "  " << signalEnumName(signal.name) << " = " << (i + 1);
         if (i != end - 1) {
             stream() << ",\n";
         }
-
-        val <<= 1;
     }
     stream() << '\n';
-    stream() << whitespace() << "};" << Qt::dec << "\n\n";
+    stream() << whitespace() << "};\n\n";
 
     stream() << "  Q_SIGNALS:";
     for (const Signal &signal : std::as_const(parseResult.signalList)) {
@@ -281,7 +273,7 @@ void KConfigHeaderGenerator::createSignals()
     stream() << '\n';
 
     stream() << "  private:\n";
-    stream() << whitespace() << "void itemChanged(quint64 flags);\n";
+    stream() << whitespace() << "void itemChanged(quint64 signalFlag);\n";
     stream() << '\n';
 }
 
@@ -508,10 +500,13 @@ void KConfigHeaderGenerator::createItemAcessors(const CfgEntry *entry, const QSt
     if (!cfg().itemAccessors) {
         return;
     }
+
+    const QString declType = entry->signalList.isEmpty() ? QStringLiteral("Item") + itemType(entry->type) : QStringLiteral("KConfigCompilerSignallingItem");
+
     stream() << whitespace() << "/**\n";
     stream() << whitespace() << "  Get Item object corresponding to " << entry->name << "()" << '\n';
     stream() << whitespace() << "*/\n";
-    stream() << whitespace() << "Item" << itemType(entry->type) << " *" << getFunction(entry->name) << "Item(";
+    stream() << whitespace() << declType << " *" << getFunction(entry->name) << "Item(";
     if (!entry->param.isEmpty()) {
         stream() << " " << cppType(entry->paramType) << " i ";
     }
@@ -625,7 +620,9 @@ void KConfigHeaderGenerator::createNonDPointerHelpers()
     stream() << "\n  private:\n";
     if (cfg().itemAccessors) {
         for (const auto *entry : std::as_const(parseResult.entries)) {
-            stream() << whitespace() << "Item" << itemType(entry->type) << " *" << itemVar(entry, cfg());
+            const QString declType =
+                entry->signalList.isEmpty() ? QStringLiteral("Item") + itemType(entry->type) : QStringLiteral("KConfigCompilerSignallingItem");
+            stream() << whitespace() << declType << " *" << itemVar(entry, cfg());
             if (!entry->param.isEmpty()) {
                 stream() << QStringLiteral("[%1]").arg(entry->paramMax + 1);
             }
@@ -634,6 +631,6 @@ void KConfigHeaderGenerator::createNonDPointerHelpers()
     }
 
     if (parseResult.hasNonModifySignals) {
-        stream() << whitespace() << "uint " << varName(QStringLiteral("settingsChanged"), cfg()) << ";\n";
+        stream() << whitespace() << "QSet<quint64> " << varName(QStringLiteral("settingsChanged"), cfg()) << ";\n";
     }
 }

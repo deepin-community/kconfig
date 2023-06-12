@@ -20,6 +20,7 @@ libKF5ConfigGui.so.5 libkf5configgui5 #MINVER#
  _ZN13KWindowConfig17restoreWindowSizeEP7QWindowRK12KConfigGroup@Base 4.97.0
  _ZN13KWindowConfig18saveWindowPositionEPK7QWindowR12KConfigGroup6QFlagsIN11KConfigBase15WriteConfigFlagEE@Base 5.74.0
  _ZN13KWindowConfig21restoreWindowPositionEP7QWindowRK12KConfigGroup@Base 5.74.0
+ _ZN13KWindowConfig27restoreWindowScreenPositionEP7QWindowPK7QScreenRK12KConfigGroup@Base 5.99.0
  _ZN15KConfigSkeleton11addItemFontERK7QStringR5QFontRKS3_S2_@Base 4.97.0
  _ZN15KConfigSkeleton11qt_metacallEN11QMetaObject4CallEiPPv@Base 4.97.0
  _ZN15KConfigSkeleton11qt_metacastEPKc@Base 4.97.0
@@ -56,9 +57,19 @@ libKF5ConfigGui.so.5 libkf5configgui5 #MINVER#
  _ZN17KStandardShortcut14pasteSelectionEv@Base 4.97.0
  _ZN17KStandardShortcut14prevCompletionEv@Base 4.97.0
  _ZN17KStandardShortcut15beginningOfLineEv@Base 4.97.0
+ _ZN17KStandardShortcut15shortcutWatcherEv@Base 5.92.0
  _ZN17KStandardShortcut17deleteWordForwardEv@Base 4.97.0
  _ZN17KStandardShortcut19showHideHiddenFilesEv@Base 5.70.0
  _ZN17KStandardShortcut19substringCompletionEv@Base 4.97.0
+ _ZN17KStandardShortcut23StandardShortcutWatcher11qt_metacallEN11QMetaObject4CallEiPPv@Base 5.92.0
+ _ZN17KStandardShortcut23StandardShortcutWatcher11qt_metacastEPKc@Base 5.92.0
+ _ZN17KStandardShortcut23StandardShortcutWatcher15shortcutChangedENS_16StandardShortcutERK5QListI12QKeySequenceE@Base 5.92.0
+ _ZN17KStandardShortcut23StandardShortcutWatcher16staticMetaObjectE@Base 5.92.0
+ _ZN17KStandardShortcut23StandardShortcutWatcherC1EP7QObject@Base 5.92.0
+ _ZN17KStandardShortcut23StandardShortcutWatcherC2EP7QObject@Base 5.92.0
+ _ZN17KStandardShortcut23StandardShortcutWatcherD0Ev@Base 5.92.0
+ _ZN17KStandardShortcut23StandardShortcutWatcherD1Ev@Base 5.92.0
+ _ZN17KStandardShortcut23StandardShortcutWatcherD2Ev@Base 5.92.0
  _ZN17KStandardShortcut24hardcodedDefaultShortcutENS_16StandardShortcutE@Base 4.97.0
  _ZN17KStandardShortcut2upEv@Base 4.97.0
  _ZN17KStandardShortcut3cutEv@Base 4.97.0
@@ -101,6 +112,23 @@ libKF5ConfigGui.so.5 libkf5configgui5 #MINVER#
  _ZN17KStandardShortcut9selectAllEv@Base 4.97.0
  _ZN17KStandardShortcut9whatsThisENS_16StandardShortcutE@Base 4.97.0
  _ZN17KStandardShortcut9whatsThisEv@Base 4.97.0
+ _ZN17KWindowStateSaver10initWidgetEP7QObjectRKSt8functionIFP7QWindowvEEPKc@Base 5.92.0
+ _ZN17KWindowStateSaver10initWidgetEP7QObjectRKSt8functionIFP7QWindowvEERK12KConfigGroup@Base 5.92.0
+ _ZN17KWindowStateSaver10initWidgetEP7QObjectRKSt8functionIFP7QWindowvEERK7QString@Base 5.92.0
+ _ZN17KWindowStateSaver10timerEventEP11QTimerEvent@Base 5.92.0
+ _ZN17KWindowStateSaver11eventFilterEP7QObjectP6QEvent@Base 5.92.0
+ _ZN17KWindowStateSaver11qt_metacallEN11QMetaObject4CallEiPPv@Base 5.92.0
+ _ZN17KWindowStateSaver11qt_metacastEPKc@Base 5.92.0
+ _ZN17KWindowStateSaver16staticMetaObjectE@Base 5.92.0
+ _ZN17KWindowStateSaverC1EP7QWindowPKc@Base 5.92.0
+ _ZN17KWindowStateSaverC1EP7QWindowRK12KConfigGroup@Base 5.92.0
+ _ZN17KWindowStateSaverC1EP7QWindowRK7QString@Base 5.92.0
+ _ZN17KWindowStateSaverC2EP7QWindowPKc@Base 5.92.0
+ _ZN17KWindowStateSaverC2EP7QWindowRK12KConfigGroup@Base 5.92.0
+ _ZN17KWindowStateSaverC2EP7QWindowRK7QString@Base 5.92.0
+ _ZN17KWindowStateSaverD0Ev@Base 5.92.0
+ _ZN17KWindowStateSaverD1Ev@Base 5.92.0
+ _ZN17KWindowStateSaverD2Ev@Base 5.92.0
  _ZNK13KConfigLoader14findItemByNameERK7QString@Base 4.97.0
  _ZNK13KConfigLoader8findItemERK7QStringS2_@Base 4.97.0
  _ZNK13KConfigLoader8hasGroupERK7QString@Base 4.97.0
@@ -111,15 +139,23 @@ libKF5ConfigGui.so.5 libkf5configgui5 #MINVER#
  _ZNK15KConfigSkeleton8ItemFont8propertyEv@Base 4.97.0
  _ZNK15KConfigSkeleton9ItemColor7isEqualERK8QVariant@Base 4.97.0
  _ZNK15KConfigSkeleton9ItemColor8propertyEv@Base 4.97.0
+ _ZNK17KStandardShortcut23StandardShortcutWatcher10metaObjectEv@Base 5.92.0
+ _ZNK17KWindowStateSaver10metaObjectEv@Base 5.92.0
  _ZTI13KConfigLoader@Base 4.97.0
  _ZTI15KConfigSkeleton@Base 4.97.0
+ _ZTI17KWindowStateSaver@Base 5.92.0
  _ZTIN15KConfigSkeleton8ItemFontE@Base 4.97.0
  _ZTIN15KConfigSkeleton9ItemColorE@Base 4.97.0
+ _ZTIN17KStandardShortcut23StandardShortcutWatcherE@Base 5.92.0
  _ZTS13KConfigLoader@Base 4.97.0
  _ZTS15KConfigSkeleton@Base 4.97.0
+ _ZTS17KWindowStateSaver@Base 5.92.0
  _ZTSN15KConfigSkeleton8ItemFontE@Base 4.97.0
  _ZTSN15KConfigSkeleton9ItemColorE@Base 4.97.0
+ _ZTSN17KStandardShortcut23StandardShortcutWatcherE@Base 5.92.0
  _ZTV13KConfigLoader@Base 4.97.0
  _ZTV15KConfigSkeleton@Base 4.97.0
+ _ZTV17KWindowStateSaver@Base 5.92.0
  _ZTVN15KConfigSkeleton8ItemFontE@Base 4.97.0
  _ZTVN15KConfigSkeleton9ItemColorE@Base 4.97.0
+ _ZTVN17KStandardShortcut23StandardShortcutWatcherE@Base 5.92.0

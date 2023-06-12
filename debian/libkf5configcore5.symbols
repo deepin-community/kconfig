@@ -1,4 +1,4 @@
-# SymbolsHelper-Confirmed: 5.74.0 amd64
+# SymbolsHelper-Confirmed: 5.94.0 amd64 i386
 libKF5ConfigCore.so.5 libkf5configcore5 #MINVER#
 * Build-Depends-Package: libkf5config-dev
  _Z25loadUrlActionRestrictionsRK12KConfigGroup@Base 5.74.0
@@ -472,6 +472,8 @@ libKF5ConfigCore.so.5 libkf5configcore5 #MINVER#
  _ZNK29KConfigCompilerSignallingItem10writeFlagsEv@Base 5.69.0
  _ZNK29KConfigCompilerSignallingItem11configGroupEP7KConfig@Base 5.69.0
  _ZNK29KConfigCompilerSignallingItem7isEqualERK8QVariant@Base 4.97.0
+ _ZNK29KConfigCompilerSignallingItem8maxValueEv@Base 5.99.0
+ _ZNK29KConfigCompilerSignallingItem8minValueEv@Base 5.99.0
  _ZNK29KConfigCompilerSignallingItem8propertyEv@Base 4.97.0
  _ZNK7KConfig10accessModeEv@Base 4.97.0
  _ZNK7KConfig11forceGlobalEv@Base 4.97.0
@@ -490,7 +492,6 @@ libKF5ConfigCore.so.5 libkf5configcore5 #MINVER#
  _ZNK7KConfig9groupImplERK10QByteArray@Base 4.97.0
  _ZNK7KConfig9groupListEv@Base 4.97.0
  _ZNK7KConfig9openFlagsEv@Base 5.2.0+git20141003
- _ZNSt8_Rb_treeI7QStringS0_St9_IdentityIS0_ESt4lessIS0_ESaIS0_EE16_M_insert_uniqueIS0_EESt4pairISt17_Rb_tree_iteratorIS0_EbEOT_@Base 5.90.0
  _ZTI11KConfigBase@Base 4.97.0
  _ZTI11QSharedData@Base 4.97.0
  _ZTI12KConfigGroup@Base 4.97.0

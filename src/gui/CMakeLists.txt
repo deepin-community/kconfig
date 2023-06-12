@@ -9,7 +9,17 @@ target_sources(KF5ConfigGui PRIVATE
     kconfigloader.cpp
     kconfigskeleton.cpp
     kstandardshortcut.cpp
+    kstandardshortcutwatcher.cpp
     kwindowconfig.cpp
+    kwindowstatesaver.cpp
+)
+
+ecm_qt_declare_logging_category(KF5ConfigGui
+    HEADER kconfig_gui_log_settings.h
+    IDENTIFIER KCONFIG_GUI_LOG
+    CATEGORY_NAME kf.config.gui
+    DESCRIPTION "KConfig Gui"
+    EXPORT KCONFIG
 )
 
 ecm_generate_export_header(KF5ConfigGui
@@ -21,7 +31,8 @@ ecm_generate_export_header(KF5ConfigGui
     EXCLUDE_DEPRECATED_BEFORE_AND_AT ${EXCLUDE_DEPRECATED_BEFORE_AND_AT}
 )
 
-target_include_directories(KF5ConfigGui INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KConfigGui>")
+target_include_directories(KF5ConfigGui
+    INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KConfig;${KDE_INSTALL_INCLUDEDIR_KF}/KConfigGui>")
 
 target_link_libraries(KF5ConfigGui PUBLIC Qt${QT_MAJOR_VERSION}::Gui Qt${QT_MAJOR_VERSION}::Xml KF5::ConfigCore)
 
@@ -36,38 +47,26 @@ ecm_generate_headers(KConfigGui_HEADERS
   KConfigLoader
   KConfigSkeleton
   KStandardShortcut
+  KStandardShortcutWatcher
   KWindowConfig
+  KWindowStateSaver
 
    REQUIRED_HEADERS KConfigGui_HEADERS
 )
 
-find_package(PythonModuleGeneration)
-
-if (PythonModuleGeneration_FOUND)
-  ecm_generate_python_binding(
-    TARGET KF5::ConfigGui
-    PYTHONNAMESPACE PyKF5
-    MODULENAME KConfigGui
-    RULES_FILE "${CMAKE_SOURCE_DIR}/cmake/rules_PyKF5.py"
-    SIP_INCLUDES
-      "${CMAKE_BINARY_DIR}/src/core/sip"
-    SIP_DEPENDS
-      QtGui/QtGuimod.sip
-      PyKF5/KConfigCore/KConfigCoremod.sip
-    HEADERS
-      kconfiggui.h
-      kconfigloader.h
-      kconfigskeleton.h
-      kstandardshortcut.h
-      kwindowconfig.h
-  )
+if (NOT BUILD_SHARED_LIBS)
+    target_sources(KF5ConfigGui PUBLIC 
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/kconfigguistaticinitializer.cpp>
+        $<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KConfigGui/kconfigguistaticinitializer.cpp>
+    )
 endif()
 
-install(TARGETS KF5ConfigGui EXPORT KF5ConfigTargets ${KF5_INSTALL_TARGETS_DEFAULT_ARGS})
+install(TARGETS KF5ConfigGui EXPORT KF5ConfigTargets ${KF_INSTALL_TARGETS_DEFAULT_ARGS})
 
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kconfiggui_export.h
   ${KConfigGui_HEADERS}
+  kconfigguistaticinitializer.cpp
   DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KConfigGui COMPONENT Devel
 )
 

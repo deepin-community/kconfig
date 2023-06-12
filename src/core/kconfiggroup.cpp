@@ -25,6 +25,7 @@
 #include <QString>
 #include <QTextStream>
 #include <QUrl>
+#include <QUuid>
 
 #include <algorithm>
 #include <array>
@@ -40,6 +41,9 @@ public:
         , bImmutable(isImmutable)
         , bConst(isConst)
     {
+        if (Q_UNLIKELY(!mOwner->name().isEmpty() && mOwner->accessMode() == KConfigBase::NoAccess)) {
+            qCWarning(KCONFIG_CORE_LOG) << "Created a KConfigGroup on an inaccessible config location" << mOwner->name() << name;
+        }
     }
 
     KConfigGroupPrivate(const KSharedConfigPtr &owner, const QByteArray &name)
@@ -49,6 +53,9 @@ public:
         , bImmutable(name.isEmpty() ? owner->isImmutable() : owner->isGroupImmutable(name))
         , bConst(false)
     {
+        if (Q_UNLIKELY(!mOwner->name().isEmpty() && mOwner->accessMode() == KConfigBase::NoAccess)) {
+            qCWarning(KCONFIG_CORE_LOG) << "Created a KConfigGroup on an inaccessible config location" << mOwner->name() << name;
+        }
     }
 
     KConfigGroupPrivate(KConfigGroup *parent, bool isImmutable, bool isConst, const QByteArray &name)
@@ -230,6 +237,8 @@ QVariant KConfigGroup::convertToQVariant(const char *pKey, const QByteArray &val
         // imho if processed string is wanted should call
         // readEntry(key, QString) not readEntry(key, QVariant)
         return QString::fromUtf8(value);
+    case QMetaType::QUuid:
+        return QUuid::fromString(QString::fromUtf8(value));
     case QMetaType::QVariantList:
     case QMetaType::QStringList:
         return KConfigGroupPrivate::deserializeList(QString::fromUtf8(value));
@@ -422,16 +431,13 @@ static QString translatePath(QString path) // krazy:exclude=passbyvalue
         return path;
     }
 
-    // we can not use KGlobal::dirs()->relativeLocation("home", path) here,
-    // since it would not recognize paths without a trailing '/'.
-    // All of the 3 following functions to return the user's home directory
-    // can return different paths. We have to test all them.
-    const QString homeDir0 = QFile::decodeName(qgetenv("HOME"));
-    const QString homeDir1 = QDir::homePath();
-    const QString homeDir2 = QDir(homeDir1).canonicalPath();
-    if (cleanHomeDirPath(path, homeDir0) || cleanHomeDirPath(path, homeDir1) || cleanHomeDirPath(path, homeDir2)) {
-        // qDebug() << "Path was replaced\n";
-    }
+    // Use the same thing as what expandString() will do, to keep data intact
+#ifdef Q_OS_WIN
+    const QString homeDir = QDir::homePath();
+#else
+    const QString homeDir = QFile::decodeName(qgetenv("HOME"));
+#endif
+    (void)cleanHomeDirPath(path, homeDir);
 
     if (startsWithFile) {
         path = QUrl::fromLocalFile(path).toString();
@@ -984,6 +990,10 @@ void KConfigGroup::writeEntry(const char *key, const QVariant &value, WriteConfi
         const QVariantList list{rSize.width(), rSize.height()};
 
         writeEntry(key, list, flags);
+        return;
+    }
+    case QMetaType::QUuid: {
+        writeEntry(key, value.toString(), flags);
         return;
     }
     case QMetaType::QSizeF: {

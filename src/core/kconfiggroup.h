@@ -730,6 +730,7 @@ private:
      */
     static QVariant convertToQVariant(const char *pKey, const QByteArray &value, const QVariant &aDefault);
     friend class KServicePrivate; // XXX yeah, ugly^5
+    friend class KServiceAction;
 };
 
 #define KCONFIGGROUP_ENUMERATOR_ERROR(ENUM) "The Qt MetaObject system does not seem to know about \"" ENUM "\" please use Q_ENUM or Q_FLAG to register it."
@@ -754,7 +755,7 @@ private:
         const QByteArray M_data = readEntry(key, QByteArray(M_enum.valueToKey(def)));                                                                          \
         return static_cast<Class::Enum>(M_enum.keyToValue(M_data.constData()));                                                                                \
     }                                                                                                                                                          \
-    inline Class::Enum Q_DECL_DEPRECATED readEntry(const KConfigGroup &group, const char *key, const Class::Enum &def)                                         \
+    inline Class::Enum KCONFIGCORE_DECL_DEPRECATED readEntry(const KConfigGroup &group, const char *key, const Class::Enum &def)                               \
     {                                                                                                                                                          \
         return group.readEntry(key, def);                                                                                                                      \
     }                                                                                                                                                          \
@@ -768,10 +769,10 @@ private:
         const QMetaEnum M_enum = M_obj->enumerator(M_index);                                                                                                   \
         writeEntry(key, QByteArray(M_enum.valueToKey(value)), flags);                                                                                          \
     }                                                                                                                                                          \
-    inline void Q_DECL_DEPRECATED writeEntry(KConfigGroup &group,                                                                                              \
-                                             const char *key,                                                                                                  \
-                                             const Class::Enum &value,                                                                                         \
-                                             KConfigBase::WriteConfigFlags flags = KConfigBase::Normal)                                                        \
+    inline void KCONFIGCORE_DECL_DEPRECATED writeEntry(KConfigGroup &group,                                                                                    \
+                                                       const char *key,                                                                                        \
+                                                       const Class::Enum &value,                                                                               \
+                                                       KConfigBase::WriteConfigFlags flags = KConfigBase::Normal)                                              \
     {                                                                                                                                                          \
         group.writeEntry(key, value, flags);                                                                                                                   \
     }
@@ -792,7 +793,7 @@ private:
         const QByteArray M_data = readEntry(key, QByteArray(M_enum.valueToKeys(def)));                                                                         \
         return static_cast<Class::Flags>(M_enum.keysToValue(M_data.constData()));                                                                              \
     }                                                                                                                                                          \
-    inline Class::Flags Q_DECL_DEPRECATED readEntry(const KConfigGroup &group, const char *key, const Class::Flags &def)                                       \
+    inline Class::Flags KCONFIGCORE_DECL_DEPRECATED readEntry(const KConfigGroup &group, const char *key, const Class::Flags &def)                             \
     {                                                                                                                                                          \
         return group.readEntry(key, def);                                                                                                                      \
     }                                                                                                                                                          \
@@ -806,10 +807,10 @@ private:
         const QMetaEnum M_enum = M_obj->enumerator(M_index);                                                                                                   \
         writeEntry(key, QByteArray(M_enum.valueToKeys(value)), flags);                                                                                         \
     }                                                                                                                                                          \
-    inline void Q_DECL_DEPRECATED writeEntry(KConfigGroup &group,                                                                                              \
-                                             const char *key,                                                                                                  \
-                                             const Class::Flags &value,                                                                                        \
-                                             KConfigBase::WriteConfigFlags flags = KConfigBase::Normal)                                                        \
+    inline void KCONFIGCORE_DECL_DEPRECATED writeEntry(KConfigGroup &group,                                                                                    \
+                                                       const char *key,                                                                                        \
+                                                       const Class::Flags &value,                                                                              \
+                                                       KConfigBase::WriteConfigFlags flags = KConfigBase::Normal)                                              \
     {                                                                                                                                                          \
         group.writeEntry(key, value, flags);                                                                                                                   \
     }

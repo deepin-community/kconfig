@@ -10,7 +10,7 @@ class TestSignalHelper
 {
   public:
     TestSignalHelper() : q(nullptr) {}
-    ~TestSignalHelper() { delete q; }
+    ~TestSignalHelper() { delete q; q = nullptr; }
     TestSignalHelper(const TestSignalHelper&) = delete;
     TestSignalHelper& operator=(const TestSignalHelper&) = delete;
     TestSignal *q;
@@ -28,7 +28,6 @@ TestSignal *TestSignal::self()
 
 TestSignal::TestSignal( )
   : KConfigSkeleton( QStringLiteral( "kconfig_compiler_kf5_test_rc" ) )
-  , mSettingsChanged(0)
 {
   Q_ASSERT(!s_globalTestSignal()->q);
   s_globalTestSignal()->q = this;
@@ -63,7 +62,9 @@ TestSignal::TestSignal( )
 
 TestSignal::~TestSignal()
 {
-  s_globalTestSignal()->q = nullptr;
+  if (s_globalTestSignal.exists() && !s_globalTestSignal.isDestroyed()) {
+    s_globalTestSignal()->q = nullptr;
+  }
 }
 
 bool TestSignal::usrSave()
@@ -71,16 +72,16 @@ bool TestSignal::usrSave()
   const bool res = KConfigSkeleton::usrSave();
   if (!res) return false;
 
-  if ( mSettingsChanged & signalEmoticonSettingsChanged )
+  if (mSettingsChanged.contains(signalEmoticonSettingsChanged))
     Q_EMIT emoticonSettingsChanged();
-  if ( mSettingsChanged & signalStyleChanged )
+  if (mSettingsChanged.contains(signalStyleChanged))
     Q_EMIT styleChanged(mStylePath, mStyleCSSVariant);
-  mSettingsChanged = 0;
+  mSettingsChanged.clear();
   return true;
 }
 
-void TestSignal::itemChanged(quint64 flags) {
-  mSettingsChanged |= flags;
+void TestSignal::itemChanged(quint64 signalFlag) {
+  mSettingsChanged.insert(signalFlag);
 
 }
 

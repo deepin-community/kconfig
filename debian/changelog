@@ -1,4 +1,182 @@
-kconfig (5.90.0-1) experimental; urgency=medium
+kconfig (5.103.0-2) unstable; urgency=medium
+
+  [ Aurélien COUDERC ]
+  * Backport upstream commits to fix apps not remembering their size in some
+    conditions under Wayland.
+
+ -- Aurélien COUDERC <coucouf@debian.org>  Thu, 23 Mar 2023 23:17:03 +0100
+
+kconfig (5.103.0-1) unstable; urgency=medium
+
+  [ Aurélien COUDERC ]
+  * New upstream release (5.103.0).
+  * Update build-deps and deps with the info from cmake.
+
+ -- Aurélien COUDERC <coucouf@debian.org>  Sun, 12 Feb 2023 21:44:21 +0100
+
+kconfig (5.102.0-1) unstable; urgency=medium
+
+  [ Aurélien COUDERC ]
+  * New upstream release (5.102.0).
+  * Update build-deps and deps with the info from cmake.
+  * Bump Standards-Version to 4.6.2, no change required.
+
+ -- Aurélien COUDERC <coucouf@debian.org>  Sun, 22 Jan 2023 21:35:00 +0100
+
+kconfig (5.101.0-1) unstable; urgency=medium
+
+  [ Aurélien COUDERC ]
+  * New upstream release (5.101.0).
+  * Update build-deps and deps with the info from cmake.
+
+ -- Aurélien COUDERC <coucouf@debian.org>  Tue, 13 Dec 2022 07:40:20 +0100
+
+kconfig (5.100.1-1) unstable; urgency=medium
+
+  [ Aurélien COUDERC ]
+  * New upstream release (5.99.0).
+  * Update build-deps and deps with the info from cmake.
+  * Update symbols from build for 5.99.0.
+  * New upstream release (5.100.1).
+  * Update build-deps and deps with the info from cmake.
+  * Drop backported upstream patches.
+  * Refresh patch Allow-packagers-set-kconfig_compiler-install-
+    dir.patch.
+  * Refresh copyright information.
+
+ -- Aurélien COUDERC <coucouf@debian.org>  Sat, 19 Nov 2022 23:18:55 +0100
+
+kconfig (5.98.0-3) unstable; urgency=medium
+
+  * Team upload.
+  * Backport upstream commit e8a6506ff01a4fb8363f94adeb3574ec6bb8361d to fix
+    for good the generation with kconfig_compiler of notification signals for
+    properties; patch
+    upstream_kconfig_compiler-switch-away-from-bit-mask-for-signa.patch.
+
+ -- Pino Toscano <pino@debian.org>  Sun, 06 Nov 2022 12:33:42 +0100
+
+kconfig (5.98.0-2) unstable; urgency=medium
+
+  * Team upload.
+  * Modernize the building more:
+    - add the dh-sequence-pkgkde-symbolshelper build dependency to use the
+      pkgkde_symbolshelper automatically
+    - drop the manually specified pkgkde_symbolshelper addon for dh
+  * Remove breaks/replaces for existing packages with versions older than
+    oldstable.
+  * Backport upstream commit 1ab5e4898de5d8a274f6fa83d9d1debbd3287444, and
+    commit 6c0acf3be392414bbdfbb7473aa842ee59d65f3d to fix the generation with
+    kconfig_compiler of bit masks enum items for signals for more than 31 keys;
+    patches upstream_kconfig_compiler-perform-signals-count-check-earlier.patch
+    and upstream_kconfig_compiler-fix-generation-of-bit-masks-enum-it.patch.
+
+ -- Pino Toscano <pino@debian.org>  Sat, 29 Oct 2022 18:20:05 +0200
+
+kconfig (5.98.0-1) unstable; urgency=medium
+
+  [ Aurélien COUDERC ]
+  * New upstream release (5.98.0).
+  * Update build-deps and deps with the info from cmake.
+
+ -- Aurélien COUDERC <coucouf@debian.org>  Sun, 18 Sep 2022 23:11:34 +0200
+
+kconfig (5.97.0-2) unstable; urgency=medium
+
+  * Revert "Mark libkf5config-bin as Multi-Arch: foreign." as it breaks
+    the lookup of kconf_update in libexec by cmake scripts.
+
+ -- Aurélien COUDERC <coucouf@debian.org>  Sun, 21 Aug 2022 17:14:41 +0200
+
+kconfig (5.97.0-1) unstable; urgency=medium
+
+  [ Aurélien COUDERC ]
+  * New upstream release (5.97.0).
+
+ -- Aurélien COUDERC <coucouf@debian.org>  Sun, 14 Aug 2022 18:55:26 +0200
+
+kconfig (5.96.0-1) unstable; urgency=medium
+
+  [ Aurélien COUDERC ]
+  * New upstream release (5.96.0).
+  * Refresh lintian overrides.
+  * Mark libkf5config-bin as Multi-Arch: foreign.
+
+ -- Aurélien COUDERC <coucouf@debian.org>  Sun, 31 Jul 2022 13:32:55 +0200
+
+kconfig (5.94.0-4) unstable; urgency=medium
+
+  * Team upload.
+  * Update symbols file. (Closes: #1012957)
+  * Update lintian overrides.
+
+ -- Pino Toscano <pino@debian.org>  Sat, 23 Jul 2022 12:20:05 +0200
+
+kconfig (5.94.0-3) unstable; urgency=medium
+
+  * Team upload.
+  * Update the patches:
+    - Allow-packagers-set-kconfig_compiler-install-dir.patch: refresh
+    - tests-skip-flaky-KConfigTest-testLocalDeletion.diff: refresh
+  * Skip the KConfigTest::testKdeglobalsVsDefault() test for now, as it seems
+    too flaky; patch tests-skip-flaky-KConfigTest-testKdeglobalsVsDefault.diff.
+  * Add Build-Depends-Package to libkf5configqml5.symbols.
+
+ -- Pino Toscano <pino@debian.org>  Fri, 27 May 2022 11:42:12 +0200
+
+kconfig (5.94.0-2) unstable; urgency=medium
+
+  * Team upload.
+  * Source-only upload.
+
+ -- Pino Toscano <pino@debian.org>  Fri, 27 May 2022 08:30:02 +0200
+
+kconfig (5.94.0-1) unstable; urgency=medium
+
+  [ Pino Toscano ]
+  * Enable again the test suite at build time, disabled in 5.85.0-1 without
+    any explanation for it; the test suite worked fine, and still works fine.
+  * Skip the KConfigTest::testLocalDeletion() test for now, as it seems too
+    flaky; patch tests-skip-flaky-KConfigTest-testLocalDeletion.diff.
+
+  [ Aurélien COUDERC ]
+  * New upstream release (5.94.0).
+  * Add optional build dependency on qtdeclarative5-dev, add new binary
+    package libkf5configqml5 for the resulting additional library.
+  * Add symbols file for libkf5configqml5.
+  * Update libkf5configcore5 symbols from build logs for 5.94.0.
+  * Refresh copyright information.
+
+ -- Aurélien COUDERC <coucouf@debian.org>  Thu, 19 May 2022 23:59:02 +0200
+
+kconfig (5.93.0-2) unstable; urgency=medium
+
+  * Team upload.
+  * Update the symbols file from the logs of buildds.
+  * Bump Standards-Version to 4.6.1, no changes required.
+  * CI: enable again the blhc job.
+  * Modernize building:
+    - add the dh-sequence-kf5 build dependency to use the kf5 addon
+      automatically
+    - drop all the manually specified addons and buildsystem for dh
+  * Remove inactive Uploaders.
+  * Remove the unused ${shlibs:Depends} substvar from libkf5config-data.
+
+ -- Pino Toscano <pino@debian.org>  Fri, 13 May 2022 21:16:04 +0200
+
+kconfig (5.93.0-1) unstable; urgency=medium
+
+  [ Aurélien COUDERC ]
+  * New upstream release (5.92.0).
+  * Refresh patches.
+  * Update the list of installed files.
+  * Update symbols from build for 5.92.0.
+  * Refresh copyright information.
+  * New upstream release (5.93.0).
+
+ -- Aurélien COUDERC <coucouf@debian.org>  Wed, 11 May 2022 23:22:43 +0200
+
+kconfig (5.90.0-1) unstable; urgency=medium
 
   [ Norbert Preining ]
   * New upstream release (5.89.0).

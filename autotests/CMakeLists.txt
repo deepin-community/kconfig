@@ -61,6 +61,18 @@ ecm_add_tests(
    LINK_LIBRARIES KF5::ConfigGui Qt${QT_MAJOR_VERSION}::Test
 )
 
+ecm_add_test(
+   kstandardshortcutwatchertest.cpp
+   # add sources instead of linking so we can use the unexported initialize()
+   ../src/gui/kstandardshortcut.cpp
+   ../src/gui/kstandardshortcutwatcher.cpp
+   LINK_LIBRARIES KF5::ConfigCore Qt${QT_MAJOR_VERSION}::Gui Qt${QT_MAJOR_VERSION}::Test
+   TEST_NAME kstandardshortcutwatchertest
+   NAME_PREFIX kconfiggui-
+)
+target_include_directories(kstandardshortcutwatchertest PRIVATE "$<TARGET_PROPERTY:KF5ConfigGui,INTERFACE_INCLUDE_DIRECTORIES>")
+target_compile_definitions(kstandardshortcutwatchertest PRIVATE "-DKCONFIGGUI_STATIC_DEFINE")
+
 # These tests do a global cleanup of ~/.qttest, so they can't run in parallel
 set_tests_properties(kconfigcore-kconfigtest PROPERTIES RUN_SERIAL TRUE)
 set_tests_properties(kconfigcore-kconfignokdehometest PROPERTIES RUN_SERIAL TRUE)
@@ -69,4 +81,9 @@ set_tests_properties(kconfiggui-kconfigguitest PROPERTIES RUN_SERIAL TRUE)
 if (NOT CMAKE_CROSSCOMPILING)
     add_subdirectory(kconfig_compiler)
 endif()
+endif()
+
+find_package(Qt${QT_MAJOR_VERSION} OPTIONAL_COMPONENTS Widgets)
+if (TARGET Qt${QT_MAJOR_VERSION}::Widgets)
+    ecm_add_test(kwindowstatesavertest.cpp LINK_LIBRARIES KF5::ConfigGui Qt${QT_MAJOR_VERSION}::Test Qt${QT_MAJOR_VERSION}::Widgets)
 endif()

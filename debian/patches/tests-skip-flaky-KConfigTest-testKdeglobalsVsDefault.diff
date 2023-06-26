@@ -1,0 +1,20 @@
+Author: Pino Toscano <pino@debian.org>
+Description: Skip KConfigTest::testKdeglobalsVsDefault()
+ This test generally passes, however not every time. It appears that it is
+ somehow flaky, and I cannot determine the reason for that.
+ .
+ Since the test of the test suite passes in all the cases without issues,
+ skip this test only for now.
+Forwarded: not-needed
+Last-Update: 2022-05-27
+
+--- a/autotests/kconfigtest.cpp
++++ b/autotests/kconfigtest.cpp
+@@ -2111,6 +2111,7 @@ void KConfigTest::testKAuthorizeEnums()
+ 
+ void KConfigTest::testKdeglobalsVsDefault()
+ {
++    QSKIP("Generally passes, however it is too flaky.");
+     // Add testRestore key with global value in kdeglobals
+     KConfig glob(QStringLiteral("kdeglobals"));
+     KConfigGroup generalGlob(&glob, "General");

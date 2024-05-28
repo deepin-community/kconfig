@@ -1,3 +1,40 @@
+kconfig (5.115.0-2) unstable; urgency=medium
+
+  [ Patrick Franz ]
+  * Upload to unstable.
+
+ -- Patrick Franz <deltaone@debian.org>  Sun, 05 May 2024 00:10:59 +0200
+
+kconfig (5.115.0-1) experimental; urgency=medium
+
+  [ Patrick Franz ]
+  * New upstream release (5.115.0).
+  * Update build-deps and deps with the info from cmake.
+  * Add myself to Uploaders.
+  * Enable LTO (Closes: #1015439).
+
+ -- Patrick Franz <deltaone@debian.org>  Sat, 16 Mar 2024 11:48:12 +0100
+
+kconfig (5.107.0-1) unstable; urgency=medium
+
+  [ Aurélien COUDERC ]
+  * New upstream release (5.105.0).
+  * Update build-deps and deps with the info from cmake.
+  * Update symbols from build for 5.105.0.
+  * New upstream release (5.107.0).
+  * Update build-deps and deps with the info from cmake.
+  * Release to unstable.
+
+ -- Aurélien COUDERC <coucouf@debian.org>  Sun, 18 Jun 2023 16:08:26 +0200
+
+kconfig (5.104.0-1) experimental; urgency=medium
+
+  [ Aurélien COUDERC ]
+  * New upstream release (5.104.0).
+  * Update build-deps and deps with the info from cmake.
+
+ -- Aurélien COUDERC <coucouf@debian.org>  Wed, 15 Mar 2023 16:09:47 +0100
+
 kconfig (5.103.0-2) unstable; urgency=medium
 
   [ Aurélien COUDERC ]

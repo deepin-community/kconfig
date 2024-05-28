@@ -33,6 +33,12 @@ static QString allConnectedScreens()
     for (auto screen : screens) {
         names << screen->SCREENNAME();
     }
+    // A string including the connector names is used in the config file key for
+    // storing per-screen-arrangement size and position data, which means we
+    // need this string to be consistent for the same screen arrangement. But
+    // connector order is non-deterministic. We need to sort the list to keep a
+    // consistent order and avoid losing multi-screen size and position data.
+    names.sort();
     return names.join(QLatin1Char(' '));
 }
 
@@ -55,10 +61,20 @@ static QScreen *findScreenByName(const QWindow *window, const QString screenName
 // save window size, position, or maximization information.
 static QString configFileString(const QScreen *screen, const QString &key)
 {
-    // We include resolution data to also save data on a per-resolution basis
-    const QString returnString =
-        QStringLiteral("%1 %2 %3x%4 %5")
-            .arg(allConnectedScreens(), key, QString::number(screen->geometry().width()), QString::number(screen->geometry().height()), screen->SCREENNAME());
+    Q_UNUSED(screen);
+    QString returnString;
+    const int numberOfScreens = QGuiApplication::screens().length();
+
+    if (numberOfScreens == 1) {
+        // For single-screen setups, we save data on a per-resolution basis.
+        const QRect screenGeometry = QGuiApplication::primaryScreen()->geometry();
+        returnString = QStringLiteral("%1x%2 screen: %3").arg(QString::number(screenGeometry.width()), QString::number(screenGeometry.height()), key);
+    } else {
+        // For multi-screen setups, we save data based on the number of screens.
+        // Distinguishing individual screens based on their names is unreliable
+        // due to name strings being inherently volatile.
+        returnString = QStringLiteral("%1 screens: %2").arg(QString::number(numberOfScreens), key);
+    }
     return returnString;
 }
 

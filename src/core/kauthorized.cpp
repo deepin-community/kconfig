@@ -173,6 +173,8 @@ public:
     bool permission;
 };
 
+Q_DECLARE_TYPEINFO(URLActionRule, Q_MOVABLE_TYPE);
+
 class KAuthorizedPrivate
 {
 public:
@@ -412,3 +414,5 @@ authorizeUrlActionInternal(const QString &action, const QUrl &_baseURL, const QU
 }
 
 } // namespace
+
+#include "moc_kauthorized.cpp"

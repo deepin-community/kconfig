@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Qt-Contexts: true\n"
 
-#: core/kconfig.cpp:965
+#: core/kconfig.cpp:961
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Pro favor, tu continge tu administrator de systema"
@@ -299,7 +299,7 @@ msgstr "Reverte"
 #: gui/kstandardshortcut.cpp:294
 msgctxt "KStandardShortcut|@action"
 msgid "Print Preview"
-msgstr "Vista preliminari de imprimer"
+msgstr "Vista preliminar de imprimer"
 
 #: gui/kstandardshortcut.cpp:295
 msgctxt "KStandardShortcut|@action"

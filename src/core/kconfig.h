@@ -390,12 +390,10 @@ protected:
 
     KConfigPrivate *const d_ptr;
 
-    KConfig(KConfigPrivate &d);
+    KCONFIGCORE_NO_EXPORT explicit KConfig(KConfigPrivate &d);
 
 private:
     friend class KConfigTest;
-
-    QStringList keyList(const QString &aGroup = QString()) const;
 
     Q_DISABLE_COPY(KConfig)
 

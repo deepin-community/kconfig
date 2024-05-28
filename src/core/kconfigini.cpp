@@ -642,7 +642,10 @@ bool KConfigIniBackend::lock()
     }
 #endif
 
-    lockFile->lock();
+    if (!lockFile->lock()) {
+        m_mutex.unlock();
+    }
+
     return lockFile->isLocked();
 }
 
@@ -947,3 +950,5 @@ void KConfigIniBackend::printableToString(BufferFragment *aString, const QFile &
     }
     aString->truncate(r - aString->constData());
 }
+
+#include "moc_kconfigini_p.cpp"

@@ -11,6 +11,7 @@
 #include "kconfig_p.h"
 
 #include "config-kconfig.h"
+#include "dbussanitizer_p.h"
 #include "kconfig_core_log_settings.h"
 
 #include <cstdlib>
@@ -377,13 +378,6 @@ QStringList KConfigPrivate::keyListImpl(const QByteArray &theGroup) const
     return keys;
 }
 
-QStringList KConfig::keyList(const QString &aGroup) const
-{
-    Q_D(const KConfig);
-    const QByteArray theGroup(aGroup.isEmpty() ? "<default>" : aGroup.toUtf8());
-    return d->keyListImpl(theGroup);
-}
-
 QMap<QString, QString> KConfig::entryMap(const QString &aGroup) const
 {
     Q_D(const KConfig);
@@ -493,8 +487,10 @@ bool KConfig::sync()
         }
     }
 
-    if (!notifyGroupsLocal.isEmpty()) {
-        d->notifyClients(notifyGroupsLocal, QLatin1Char('/') + name());
+    // Notifying absolute paths is not supported and also makes no sense.
+    const bool isAbsolutePath = name().at(0) == QLatin1Char('/');
+    if (!notifyGroupsLocal.isEmpty() && !isAbsolutePath) {
+        d->notifyClients(notifyGroupsLocal, kconfigDBusSanitizePath(QLatin1Char('/') + name()));
     }
     if (!notifyGroupsGlobal.isEmpty()) {
         d->notifyClients(notifyGroupsGlobal, QStringLiteral("/kdeglobals"));

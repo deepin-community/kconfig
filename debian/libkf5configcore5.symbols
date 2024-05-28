@@ -1,4 +1,4 @@
-# SymbolsHelper-Confirmed: 5.94.0 amd64 i386
+# SymbolsHelper-Confirmed: 5.115.0 amd64
 libKF5ConfigCore.so.5 libkf5configcore5 #MINVER#
 * Build-Depends-Package: libkf5config-dev
  _Z25loadUrlActionRestrictionsRK12KConfigGroup@Base 5.74.0
@@ -93,8 +93,6 @@ libKF5ConfigCore.so.5 libkf5configcore5 #MINVER#
  _ZN13KSharedConfig10openConfigERK7QString6QFlagsIN7KConfig8OpenFlagEEN14QStandardPaths16StandardLocationE@Base 4.97.0
  _ZN13KSharedConfig15openStateConfigERK7QString@Base 5.69.0
  _ZN13KSharedConfig9groupImplERK10QByteArray@Base 4.97.0
- _ZN13KSharedConfigC1ERK7QString6QFlagsIN7KConfig8OpenFlagEEN14QStandardPaths16StandardLocationE@Base 4.97.0
- _ZN13KSharedConfigC2ERK7QString6QFlagsIN7KConfig8OpenFlagEEN14QStandardPaths16StandardLocationE@Base 4.97.0
  _ZN13KSharedConfigD0Ev@Base 4.97.0
  _ZN13KSharedConfigD1Ev@Base 4.97.0
  _ZN13KSharedConfigD2Ev@Base 4.97.0
@@ -102,10 +100,7 @@ libKF5ConfigCore.so.5 libkf5configcore5 #MINVER#
  _ZN14KConfigWatcher11qt_metacastEPKc@Base 5.52.0
  _ZN14KConfigWatcher13configChangedERK12KConfigGroupRK5QListI10QByteArrayE@Base 5.52.0
  _ZN14KConfigWatcher16staticMetaObjectE@Base 5.52.0
- _ZN14KConfigWatcher26onConfigChangeNotificationERK5QHashI7QString5QListI10QByteArrayEE@Base 5.52.0
  _ZN14KConfigWatcher6createERK28QExplicitlySharedDataPointerI13KSharedConfigE@Base 5.52.0
- _ZN14KConfigWatcherC1ERK28QExplicitlySharedDataPointerI13KSharedConfigE@Base 5.52.0
- _ZN14KConfigWatcherC2ERK28QExplicitlySharedDataPointerI13KSharedConfigE@Base 5.52.0
  _ZN14KConfigWatcherD0Ev@Base 5.62.0
  _ZN14KConfigWatcherD1Ev@Base 5.62.0
  _ZN14KConfigWatcherD2Ev@Base 5.62.0
@@ -128,9 +123,7 @@ libKF5ConfigCore.so.5 libkf5configcore5 #MINVER#
  _ZN19KConfigSkeletonItem8setGroupERK12KConfigGroup@Base 5.69.0
  _ZN19KConfigSkeletonItem8setGroupERK7QString@Base 4.97.0
  _ZN19KConfigSkeletonItem8setLabelERK7QString@Base 4.97.0
- _ZN19KConfigSkeletonItemC1ER26KConfigSkeletonItemPrivateRK7QStringS4_@Base 5.69.0
  _ZN19KConfigSkeletonItemC1ERK7QStringS2_@Base 4.97.0
- _ZN19KConfigSkeletonItemC2ER26KConfigSkeletonItemPrivateRK7QStringS4_@Base 5.69.0
  _ZN19KConfigSkeletonItemC2ERK7QStringS2_@Base 4.97.0
  _ZN19KConfigSkeletonItemD0Ev@Base 4.97.0
  _ZN19KConfigSkeletonItemD1Ev@Base 4.97.0
@@ -307,10 +300,8 @@ libKF5ConfigCore.so.5 libkf5configcore5 #MINVER#
  _ZN7KConfig4syncEv@Base 4.97.0
  _ZN7KConfig9groupImplERK10QByteArray@Base 4.97.0
  _ZN7KConfig9setLocaleERK7QString@Base 4.97.0
- _ZN7KConfigC1ER14KConfigPrivate@Base 4.97.0
  _ZN7KConfigC1ERK7QString6QFlagsINS_8OpenFlagEEN14QStandardPaths16StandardLocationE@Base 4.97.0
  _ZN7KConfigC1ERK7QStringS2_N14QStandardPaths16StandardLocationE@Base 4.97.0
- _ZN7KConfigC2ER14KConfigPrivate@Base 4.97.0
  _ZN7KConfigC2ERK7QString6QFlagsINS_8OpenFlagEEN14QStandardPaths16StandardLocationE@Base 4.97.0
  _ZN7KConfigC2ERK7QStringS2_N14QStandardPaths16StandardLocationE@Base 4.97.0
  _ZN7KConfigD0Ev@Base 4.97.0
@@ -363,12 +354,6 @@ libKF5ConfigCore.so.5 libkf5configcore5 #MINVER#
  _ZNK12KConfigGroup9readEntryERK7QStringRK5QListI8QVariantE@Base 4.97.0
  _ZNK12KConfigGroup9readEntryERK7QStringRK8QVariant@Base 4.97.0
  _ZNK12KConfigGroup9readEntryERK7QStringS2_@Base 4.97.0
- (optional=templinst|arch=amd64 arm64 armel armhf ia64 kfreebsd-amd64 mips64el powerpc powerpcspe ppc64el riscv64 sparc64 x32)_ZNK12KConfigGroup9readEntryI5QRectEET_PKcRKS2_@Base 5.3.0
- (optional=templinst|arch=amd64 arm64 armel armhf hppa ia64 kfreebsd-amd64 m68k mips64el powerpc powerpcspe ppc64el riscv64 sh4 sparc64 x32)_ZNK12KConfigGroup9readEntryI5QSizeEET_PKcRKS2_@Base 5.3.0
- (optional=templinst|arch=amd64 arm64 hppa ia64 kfreebsd-amd64 m68k mips64el ppc64el riscv64 sh4 sparc64 x32)_ZNK12KConfigGroup9readEntryI6QPointEET_PKcRKS2_@Base 5.3.0
- (optional=templinst)_ZNK12KConfigGroup9readEntryI9QDateTimeEET_PKcRKS2_@Base 4.100.0
- (optional=templinst)_ZNK12KConfigGroup9readEntryIbEET_PKcRKS1_@Base 4.100.0
- (optional=templinst)_ZNK12KConfigGroup9readEntryIiEE5QListIT_EPKcRKS3_@Base 4.100.0
  _ZNK12KDesktopFile10readDeviceEv@Base 4.97.0
  _ZNK12KDesktopFile11actionGroupERK7QString@Base 4.97.0
  _ZNK12KDesktopFile11hasLinkTypeEv@Base 4.97.0
@@ -487,7 +472,6 @@ libKF5ConfigCore.so.5 libkf5configcore5 #MINVER#
  _ZNK7KConfig6copyToERK7QStringPS_@Base 4.97.0
  _ZNK7KConfig6localeEv@Base 4.97.0
  _ZNK7KConfig7isDirtyEv@Base 4.97.0
- _ZNK7KConfig7keyListERK7QString@Base 4.97.0
  _ZNK7KConfig8entryMapERK7QString@Base 4.97.0
  _ZNK7KConfig9groupImplERK10QByteArray@Base 4.97.0
  _ZNK7KConfig9groupListEv@Base 4.97.0
@@ -509,7 +493,6 @@ libKF5ConfigCore.so.5 libkf5configcore5 #MINVER#
  _ZTIN19KCoreConfigSkeleton11ItemUrlListE@Base 4.97.0
  _ZTIN19KCoreConfigSkeleton12ItemDateTimeE@Base 4.97.0
  _ZTIN19KCoreConfigSkeleton12ItemLongLongE@Base 4.97.0
- _ZTIN19KCoreConfigSkeleton12ItemPasswordE@Base 4.97.0
  _ZTIN19KCoreConfigSkeleton12ItemPathListE@Base 4.97.0
  _ZTIN19KCoreConfigSkeleton12ItemPropertyE@Base 4.97.0
  _ZTIN19KCoreConfigSkeleton13ItemULongLongE@Base 4.97.0
@@ -518,7 +501,6 @@ libKF5ConfigCore.so.5 libkf5configcore5 #MINVER#
  _ZTIN19KCoreConfigSkeleton7ItemUrlE@Base 4.97.0
  _ZTIN19KCoreConfigSkeleton8ItemBoolE@Base 4.97.0
  _ZTIN19KCoreConfigSkeleton8ItemEnumE@Base 4.97.0
- _ZTIN19KCoreConfigSkeleton8ItemPathE@Base 4.97.0
  _ZTIN19KCoreConfigSkeleton8ItemRectE@Base 4.97.0
  _ZTIN19KCoreConfigSkeleton8ItemSizeE@Base 4.97.0
  _ZTIN19KCoreConfigSkeleton8ItemUIntE@Base 4.97.0
@@ -570,7 +552,6 @@ libKF5ConfigCore.so.5 libkf5configcore5 #MINVER#
  _ZTVN19KCoreConfigSkeleton11ItemUrlListE@Base 4.97.0
  _ZTVN19KCoreConfigSkeleton12ItemDateTimeE@Base 4.97.0
  _ZTVN19KCoreConfigSkeleton12ItemLongLongE@Base 4.97.0
- _ZTVN19KCoreConfigSkeleton12ItemPasswordE@Base 4.97.0
  _ZTVN19KCoreConfigSkeleton12ItemPathListE@Base 4.97.0
  _ZTVN19KCoreConfigSkeleton12ItemPropertyE@Base 4.97.0
  _ZTVN19KCoreConfigSkeleton13ItemULongLongE@Base 4.97.0
@@ -579,7 +560,6 @@ libKF5ConfigCore.so.5 libkf5configcore5 #MINVER#
  _ZTVN19KCoreConfigSkeleton7ItemUrlE@Base 4.97.0
  _ZTVN19KCoreConfigSkeleton8ItemBoolE@Base 4.97.0
  _ZTVN19KCoreConfigSkeleton8ItemEnumE@Base 4.97.0
- _ZTVN19KCoreConfigSkeleton8ItemPathE@Base 4.97.0
  _ZTVN19KCoreConfigSkeleton8ItemRectE@Base 4.97.0
  _ZTVN19KCoreConfigSkeleton8ItemSizeE@Base 4.97.0
  _ZTVN19KCoreConfigSkeleton8ItemUIntE@Base 4.97.0

@@ -2,7 +2,7 @@
 # -*- makefile -*-
 
 # Disable fixfilepath, as it triggers build failures.
-export DEB_BUILD_MAINT_OPTIONS = hardening=+all reproducible=-fixfilepath
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all reproducible=-fixfilepath optimize=+lto
 
 %:
 	dh $@

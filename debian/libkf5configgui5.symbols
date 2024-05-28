@@ -1,11 +1,10 @@
-# SymbolsHelper-Confirmed: 5.74.0 amd64
+# SymbolsHelper-Confirmed: 5.115.0 amd64
 libKF5ConfigGui.so.5 libkf5configgui5 #MINVER#
 * Build-Depends-Package: libkf5config-dev
  _ZN10KConfigGui13sessionConfigEv@Base 4.97.0
  _ZN10KConfigGui16hasSessionConfigEv@Base 4.97.0
  _ZN10KConfigGui16setSessionConfigERK7QStringS2_@Base 5.11.0
  _ZN10KConfigGui17sessionConfigNameEv@Base 4.97.0
- (optional=templinst)_ZN12KConfigGroup10writeEntryIiEEvPKcRK5QListIT_E6QFlagsIN11KConfigBase15WriteConfigFlagEE@Base 4.100.0
  _ZN13KConfigLoader14usrWriteConfigEv@Base 4.97.0
  _ZN13KConfigLoaderC1E28QExplicitlySharedDataPointerI13KSharedConfigEP9QIODeviceP7QObject@Base 4.97.0
  _ZN13KConfigLoaderC1ERK12KConfigGroupP9QIODeviceP7QObject@Base 4.97.0
@@ -65,8 +64,6 @@ libKF5ConfigGui.so.5 libkf5configgui5 #MINVER#
  _ZN17KStandardShortcut23StandardShortcutWatcher11qt_metacastEPKc@Base 5.92.0
  _ZN17KStandardShortcut23StandardShortcutWatcher15shortcutChangedENS_16StandardShortcutERK5QListI12QKeySequenceE@Base 5.92.0
  _ZN17KStandardShortcut23StandardShortcutWatcher16staticMetaObjectE@Base 5.92.0
- _ZN17KStandardShortcut23StandardShortcutWatcherC1EP7QObject@Base 5.92.0
- _ZN17KStandardShortcut23StandardShortcutWatcherC2EP7QObject@Base 5.92.0
  _ZN17KStandardShortcut23StandardShortcutWatcherD0Ev@Base 5.92.0
  _ZN17KStandardShortcut23StandardShortcutWatcherD1Ev@Base 5.92.0
  _ZN17KStandardShortcut23StandardShortcutWatcherD2Ev@Base 5.92.0

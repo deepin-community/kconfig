@@ -24,7 +24,7 @@ msgstr ""
 "X-Accelerator-Marker: &\n"
 "X-Qt-Contexts: true\n"
 
-#: core/kconfig.cpp:965
+#: core/kconfig.cpp:961
 msgctxt "KConfig|"
 msgid "Please contact your system administrator."
 msgstr "Contacteu amb l'administrador del sistema."
@@ -199,7 +199,7 @@ msgstr "Final de línia"
 #: gui/kstandardshortcut.cpp:181
 msgctxt "KStandardShortcut|@action"
 msgid "Go to Line"
-msgstr "Ves a la línia"
+msgstr "Ves fins a la línia"
 
 #: gui/kstandardshortcut.cpp:184
 msgctxt "KStandardShortcut|@action"
@@ -344,12 +344,12 @@ msgstr "Zoom"
 #: gui/kstandardshortcut.cpp:302
 msgctxt "KStandardShortcut|@action"
 msgid "Goto"
-msgstr "Ves a"
+msgstr "Ves fins a"
 
 #: gui/kstandardshortcut.cpp:303
 msgctxt "KStandardShortcut|@action"
 msgid "Goto Page"
-msgstr "Ves a la pàgina"
+msgstr "Ves fins a la pàgina"
 
 #: gui/kstandardshortcut.cpp:306
 msgctxt "KStandardShortcut|@action"
@@ -444,7 +444,7 @@ msgstr "Canvia el nom"
 #: gui/kstandardshortcut.cpp:380
 msgctxt "KStandardShortcut|@action"
 msgid "Move to Trash"
-msgstr "Mou a la paperera"
+msgstr "Mou cap a dins de la paperera"
 
 #: gui/kstandardshortcut.cpp:386
 msgctxt "KStandardShortcut|@action"
@@ -553,7 +553,7 @@ msgstr ""
 #: kreadconfig/kwriteconfig.cpp:36
 msgctxt "main|"
 msgid "Delete the designated key if enabled"
-msgstr "Suprimix la clau designada, si està activada"
+msgstr "Suprimix la clau designada, si està seleccionada"
 
 # skip-rule: t-apo_ini,t-apo_fin
 #: kreadconfig/kwriteconfig.cpp:37
